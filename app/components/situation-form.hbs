@@ -1,0 +1,34 @@
+<form>
+  <fieldset class="form-group" id="modular-count">
+    <div class="row">
+      <legend class="col-form-label col-sm-2 pt-0">No. of Modular Sets</legend>
+      <div class="col-sm-10">
+        {{#each this.modularEncounterSets as |set index|}}
+          <div class="form-check form-check-inline">
+            <Input @id={{concat "modular-count" set.id}} type="radio" name="modular-count" checked={{is-equal this.modularRadioIndex index}} class="form-check-input" {{on "click" (action this.modularChanged index)}} />
+            <label class="form-check-label" for={{concat "modular-count" set.id}}>{{set.id}}</label>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </fieldset>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="button" class="btn btn-primary" {{on "click" this.generate}}>Generate!</button>
+    </div>
+  </div>
+</form>
+
+{{#if this.state}}
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      {{this.state.villain.name}}
+    </div>
+    {{#each this.state.modularEncounterSets as |set|}}
+      <div class="card-body">
+        <h6 class="card-title">{{set.name}} <span class="text-muted">({{set.pack}})</span></h6>
+        <p class="card-subtitle mb-2 text-muted">difficulty {{set.difficulty}}</p>
+      </div>
+    {{/each}}
+  </div>
+{{/if}}
