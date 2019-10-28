@@ -12,6 +12,25 @@
       </div>
     </div>
   </fieldset>
+  <fieldset class="form-group" id="difficultyMode">
+    <div class="form-group row">
+      <legend class="col-form-label col-sm-2 pt-0">Standard/Export Mode</legend>
+      <div class="col-sm-10">
+        <div class="form-check form-check-inline">
+          <Input @id="difficultyModeRandom" type="radio" name="difficultyMode" checked={{is-equal this.difficultyMode "random"}} class="form-check-input" {{on "click" (action this.difficultyModeChanged "random")}} />
+          <label class="form-check-label" for="difficultyMode">Random</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <Input @id="difficultyModeStandard" type="radio" name="difficultyMode" checked={{is-equal this.difficultyMode "standard"}} class="form-check-input" {{on "click" (action this.difficultyModeChanged "standard")}} />
+          <label class="form-check-label" for="difficultyMode">Standard</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <Input @id="difficultyModeExpert" type="radio" name="difficultyMode" checked={{is-equal this.difficultyMode "expert"}} class="form-check-input" {{on "click" (action this.difficultyModeChanged "expert")}} />
+          <label class="form-check-label" for="difficultyMode">Expert</label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
   <div class="form-group row">
     <div class="col-sm-10">
       <button type="button" class="btn btn-primary" {{on "click" this.generate}}>Generate!</button>
@@ -23,6 +42,7 @@
   <div class="card" style="width: 18rem;">
     <div class="card-header">
       {{this.state.villain.name}}
+      <p class="card-subtitle mb-2 text-muted">Difficulty Mode: {{this.state.difficultyMode}}</p>
     </div>
     <ul class="list-group list-group-flush">
       {{#each this.state.modularEncounterSets as |set|}}
