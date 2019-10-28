@@ -24,11 +24,13 @@
     <div class="card-header">
       {{this.state.villain.name}}
     </div>
-    {{#each this.state.modularEncounterSets as |set|}}
-      <div class="card-body">
-        <h6 class="card-title">{{set.name}} <span class="text-muted">({{set.pack}})</span></h6>
-        <p class="card-subtitle mb-2 text-muted">difficulty {{set.difficulty}}</p>
-      </div>
-    {{/each}}
+    <ul class="list-group list-group-flush">
+      {{#each this.state.modularEncounterSets as |set|}}
+        <li class="list-group-item">
+          <h6 class="card-title">{{set.name}} <span class="text-muted">({{set.pack}})</span></h6>
+          <p class="card-subtitle mb-2 text-muted">difficulty {{set.difficulty}}</p>
+        </li>
+      {{/each}}
+    </ul>
   </div>
 {{/if}}
