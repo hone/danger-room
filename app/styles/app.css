@@ -37,6 +37,8 @@ legend {
   margin: 0 auto;
 }
 
+
+
 form {
   width: 300px;
   margin: 0 auto;
@@ -82,6 +84,50 @@ form {
   border-radius: 1px;
 }
 
+.card {
+  width: 300px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 1px;
+  background-image: radial-gradient( #bf2e2a, #ed7572);
+  background-color: #bf2e2a;
+  -webkit-box-shadow: 5px 5px 1px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 5px 1px 1px rgba(0,0,0,0.75);
+  box-shadow: 5px 5px 1px 1px rgba(0,0,0,0.75);
+  transform: skewY(-5deg);
+}
+
+.card-title {
+}
+
+.card-header {
+  font-size: 2rem;
+  background-color: #e3cf19;
+  border: 1px solid black;
+  margin: 0 0 15px 0;
+  -webkit-box-shadow: 5px 5px 1px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 5px 1px 1px rgba(0,0,0,0.75);
+  box-shadow: 5px 5px 1px 1px rgba(0,0,0,0.75);
+}
+
+.card-subtitle {
+  font-size: 1rem;
+}
+
+.list-group-item {
+  font-family: 'Rubik', sans-serif;
+  background-color: #e4d671;
+  color: black;
+  -webkit-box-shadow: 3px 3px 1px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 1px 1px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 1px 1px rgba(0,0,0,0.75);
+  border-radius: 1px;
+  border: 2px solid black;
+  transform: skewY(9deg);
+  margin: 10px auto;
+  padding: 5px;
+}
+
 input[type="radio"] {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -108,15 +154,7 @@ input[type="radio"]:active {
   background-color: #ada042;
 }
 
-
 input[type="radio"]:hover {
   background-color: black;
 }
-
-
-
-
-
-
-
 
