@@ -100,9 +100,8 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked {
-  background-color: #ffe000;
-  color: black;
-  cursor: pointer;
+  background-color: black;
+  border: 1px solid yellow;
 }
 
 input[type="radio"]:active {
@@ -111,7 +110,7 @@ input[type="radio"]:active {
 
 
 input[type="radio"]:hover {
-  background-color: #ffe000;
+  background-color: black;
 }
 
 
