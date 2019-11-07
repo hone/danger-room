@@ -3,10 +3,10 @@
     <div class="row">
       <legend>No. of Modular Sets</legend>
       <div class='options'>
-        {{#each this.modularEncounterSets as |set index|}}
+        {{#each this.numModularEncounterSets as |num|}}
           <div class="form-check form-check-inline">
-            <Input @id={{concat "modular-count" set.id}} type="radio" name="modular-count" checked={{is-equal this.modularRadioIndex index}} class="form-check-input" {{on "click" (action this.modularChanged index)}} />
-            <label class="form-check-label" for={{concat "modular-count" set.id}}>{{set.id}}</label>
+            <Input @id={{concat "modular-count" num}} type="radio" name="modular-count" checked={{is-equal this.parameters.numModularEncounterSets num}} class="form-check-input" {{on "click" (action (mut this.parameters.numModularEncounterSets) num)}} />
+            <label class="form-check-label" for={{concat "modular-count" num}}>{{num}}</label>
           </div>
         {{/each}}
       </div>
@@ -17,15 +17,15 @@
       <legend>Standard/Export Mode</legend>
       <div class='options'>
         <div class="form-check form-check-inline">
-          <Input @id="difficultyModeRandom" type="radio" name="difficultyMode" checked={{is-equal this.difficultyMode "random"}} class="form-check-input" {{on "click" (action this.difficultyModeChanged "random")}} />
+          <Input @id="difficultyModeRandom" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "random"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "random")}} />
           <label class="form-check-label" for="difficultyMode">Random</label>
         </div>
         <div class="form-check form-check-inline">
-          <Input @id="difficultyModeStandard" type="radio" name="difficultyMode" checked={{is-equal this.difficultyMode "standard"}} class="form-check-input" {{on "click" (action this.difficultyModeChanged "standard")}} />
+          <Input @id="difficultyModeStandard" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "standard"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "standard")}} />
           <label class="form-check-label" for="difficultyMode">Standard</label>
         </div>
         <div class="form-check form-check-inline">
-          <Input @id="difficultyModeExpert" type="radio" name="difficultyMode" checked={{is-equal this.difficultyMode "expert"}} class="form-check-input" {{on "click" (action this.difficultyModeChanged "expert")}} />
+          <Input @id="difficultyModeExpert" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "expert"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "expert")}} />
           <label class="form-check-label" for="difficultyMode">Expert</label>
         </div>
       </div>
@@ -38,14 +38,14 @@
   </div>
 </form>
 
-{{#if this.state}}
+{{#if this.result}}
   <div class="card" style="width: 18rem;">
     <div class="card-header">
-      {{this.state.villain.name}}
-      <p class="card-subtitle mb-2 text-muted">Difficulty Mode: {{this.state.difficultyMode}}</p>
+      {{this.result.villain.name}}
+      <p class="card-subtitle mb-2 text-muted">Difficulty Mode: {{this.result.difficultyMode}}</p>
     </div>
     <ul class="list-group list-group-flush">
-      {{#each this.state.modularEncounterSets as |set|}}
+      {{#each this.result.modularEncounterSets as |set|}}
         <li class="list-group-item">
           <h6 class="card-title">{{set.name}} <span class="text-muted">({{set.pack}})</span></h6>
           <p class="card-subtitle mb-2 text-muted">difficulty {{set.difficulty}}</p>
