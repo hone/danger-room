@@ -28,11 +28,7 @@ export default class SituationForm extends Component {
     }
 
     if (args.state.result.villain.length > 0) {
-      let normalizedName = args.state.result.villain.toLowerCase();
-
-      villain = Villains.find(element => {
-        return element.name.toLowerCase() === normalizedName;
-      });
+      villain = Villains.find(element => element.slug === args.state.result.villain);
     }
     if (args.state.result.difficultyMode.length > 0) {
       if (DIFFICULTY_MODES.includes(args.state.result.difficultyMode)) {
@@ -40,10 +36,7 @@ export default class SituationForm extends Component {
       }
     }
     args.state.result.modularEncounterSets.forEach(inputSet => {
-      let normalizedName = inputSet.toLowerCase();
-      let foundSet = ModularEncounterSets.find(dataSet => {
-        return dataSet.name.toLowerCase() === normalizedName;
-      });
+      let foundSet = ModularEncounterSets.find(dataSet => dataSet.slug === inputSet);
       if (foundSet) {
         modularEncounterSets.push(foundSet);
       }
@@ -84,9 +77,9 @@ export default class SituationForm extends Component {
         numModularEncounterSets: this.parameters.numModularEncounterSets,
       },
       results: {
-        villain: this.result.villain.name,
+        villain: this.result.villain.slug,
         difficultyMode: this.result.difficultyMode,
-        modularEncounterSets: this.result.modularEncounterSets.map(set => set.name),
+        modularEncounterSets: this.result.modularEncounterSets.map(set => set.slug),
       },
     };
     this.submit(resultState);
