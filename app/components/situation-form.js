@@ -12,6 +12,7 @@ export default class SituationForm extends Component {
   @tracked result = null;
   @tracked modularRadioIndex = 0;
   numModularEncounterSets = [1, 2, 3];
+  villains = Villains;
 
   constructor(owner, args) {
     super(owner, args);
@@ -53,8 +54,12 @@ export default class SituationForm extends Component {
   }
 
   @action
+  changeVillain(event) {
+    this.parameters.villain = event.target.value;
+  }
+
+  @action
   generate() {
-    let villain = shuffle(Villains)[0];
     let modulars = shuffle(ModularEncounterSets);
     let sets = [];
     for (let i = 0; i < this.parameters.numModularEncounterSets; i++) {
@@ -63,6 +68,10 @@ export default class SituationForm extends Component {
     let difficultyMode = this.parameters.difficultyMode;
     if (difficultyMode === "random") {
       difficultyMode = shuffle(DIFFICULTY_MODES).pop();
+    }
+    let villain = Villains.find(v => v.id == this.parameters.villain);
+    if (!villain) {
+      villain = shuffle(Villains)[0];
     }
 
     this.result = {
@@ -75,6 +84,7 @@ export default class SituationForm extends Component {
       parameters: {
         difficultyMode: this.parameters.difficultyMode,
         numModularEncounterSets: this.parameters.numModularEncounterSets,
+        villain: this.parameters.villain,
       },
       results: {
         villain: this.result.villain.slug,

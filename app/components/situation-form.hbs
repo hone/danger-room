@@ -31,6 +31,17 @@
       </div>
     </div>
   </fieldset>
+  <fieldset class="form-group" id="villain">
+    <div class="row">
+      <legend>Villain</legend>
+      <select class="custom-select" {{on "change" (action "changeVillain")}}>
+        <option value="random">Random</option>
+        {{#each this.villains as |villain|}}
+          <option value={{villain.id}} selected={{is-equal villain.id this.parameters.villain}}>{{villain.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </fieldset>
   <div class="form-group row">
     <div class="btn-container">
       <button type="button" class="btn btn-primary" {{on "click" this.generate}}>Generate!</button>

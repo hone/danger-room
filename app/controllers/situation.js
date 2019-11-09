@@ -4,6 +4,8 @@ import { action } from '@ember/object';
 
 export default class SituationController extends Controller {
   queryParams = ['villain', {
+    chosenVillain: 'chosen_villain',
+  }, {
     chosenDifficultyMode: 'chosen_difficulty_mode',
   }, {
     chosenNumModularEncounterSets: 'chosen_num_modular_encounter_sets',
@@ -13,6 +15,7 @@ export default class SituationController extends Controller {
     modularEncounterSets: 'modular_encounter_sets'
   }];
   @tracked villain = "";
+  @tracked chosenVillain = "random";
   @tracked chosenDifficultyMode = "";
   @tracked chosenNumModularEncounterSets = 1;
   @tracked difficultyMode = "";
@@ -23,6 +26,7 @@ export default class SituationController extends Controller {
       parameters: {
         difficultyMode: this.chosenDifficultyMode,
         numModularEncounterSets: this.chosenNumModularEncounterSets,
+        villain: this.chosenVillain,
       },
       result: {
         villain: this.villain,
@@ -34,7 +38,7 @@ export default class SituationController extends Controller {
 
   @action
   submit(state) {
-    console.log(state);
+    this.chosenVillain = state.parameters.villain;
     this.chosenDifficultyMode = state.parameters.difficultyMode;
     this.chosenNumModularEncounterSets = state.parameters.numModularEncounterSets;
     this.villain = state.results.villain;

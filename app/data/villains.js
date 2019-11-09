@@ -4,7 +4,7 @@ export default [
     "name": "Rhino",
     "slug": "rhino",
   }, {
-    "id": 4,
+    "id": 2,
     "name": "Klaw",
     "slug": "klaw",
   }, {
