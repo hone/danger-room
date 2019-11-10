@@ -1,0 +1,18 @@
+{
+  "buildpacks": [
+    { "url": "https://github.com/heroku/heroku-buildpack-google-chrome" },
+    { "url": "https://github.com/heroku/heroku-buildpack-nodejs" },
+    { "url": "https://github.com/heroku/heroku-buildpack-static" }
+  ],
+  "env": {
+    "EMBER_ENV": "production"
+  },
+  "environments": {
+    "test": {
+      "env": {
+        "GOOGLE_CHROME_CHANNEL": "stable",
+        "EMBER_ENV": "test"
+      }
+    }
+  }
+}
