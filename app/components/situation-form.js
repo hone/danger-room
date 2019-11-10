@@ -42,20 +42,27 @@ export default class SituationForm extends Component {
         modularEncounterSets.push(foundSet);
       }
     });
+    if (args.state.result.players) {
+      players = args.state.result.players.map(player => {
+        let id = Identities.find(i => i.id === player.identity);
+        if (id) {
+          return {
+            identity: id,
+            aspect: player.aspect,
+          };
+        }
+      });
+    }
 
     if (villain && difficultyMode && modularEncounterSets.length > 0) {
       this.result = {
         villain,
         difficultyMode,
         modularEncounterSets,
+        players,
       };
     }
     this.submit = args.submit;
-  }
-
-  @action
-  changeVillain(event) {
-    this.parameters.villain = event.target.value;
   }
 
   @action

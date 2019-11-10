@@ -34,7 +34,7 @@
   <fieldset class="form-group" id="villain">
     <div class="row">
       <legend>Villain</legend>
-      <select class="custom-select" {{on "change" (action "changeVillain")}}>
+      <select class="custom-select" onChange={{action (mut this.parameters.villain) value="target.value"}}>
         <option value="random">Random</option>
         {{#each this.villains as |villain|}}
           <option value={{villain.id}} selected={{is-equal villain.id this.parameters.villain}}>{{villain.name}}</option>
