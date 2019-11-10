@@ -2,7 +2,7 @@
   <fieldset class="form-group" id="villain">
     <div class="row">
       <legend>Villain</legend>
-      <select class="custom-select" onChange={{action (mut this.parameters.villain) value="target.value"}}>
+      <select class="custom-select" onChange={{action (mut this.parameters.villain) value="target.value"}} data-test-parameters-villain>
         <option value="random">Random</option>
         {{#each this.villains as |villain|}}
           <option value={{villain.id}} selected={{is-equal villain.id this.parameters.villain}}>{{villain.name}}</option>
@@ -57,13 +57,13 @@
   </fieldset>
   <div class="form-group row">
     <div class="btn-container">
-      <button type="button" class="btn btn-primary" {{on "click" this.generate}}>Generate!</button>
+      <button type="button" class="btn btn-primary" {{on "click" this.generate}} data-test-generate>Generate!</button>
     </div>
   </div>
 </form>
 
 {{#if this.result}}
-  <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 18rem;" data-test-result-villain={{this.result.villain.name}}>
     <div class="card-header">
       {{this.result.villain.name}}
       <p class="card-subtitle mb-2 text-muted">Difficulty Mode: {{this.result.difficultyMode}}</p>
@@ -78,7 +78,7 @@
     </ul>
   </div>
   {{#if this.result.players}}
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 18rem;" data-test-result-player-hero={{player.identity.id}} data-test-result-player-aspect={{player.aspect}}>
       {{#each this.result.players as |player|}}
         <div class="card-header">
           {{player.identity.hero}}
