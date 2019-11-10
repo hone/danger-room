@@ -1,15 +1,13 @@
 <form>
-  <fieldset class="form-group" id="modular-count">
+  <fieldset class="form-group" id="villain">
     <div class="row">
-      <legend>No. of Modular Sets</legend>
-      <div class='options'>
-        {{#each this.numModularEncounterSets as |num|}}
-          <div class="form-check form-check-inline">
-            <Input @id={{concat "modular-count" num}} type="radio" name="modular-count" checked={{is-equal this.parameters.numModularEncounterSets num}} class="form-check-input" {{on "click" (action (mut this.parameters.numModularEncounterSets) num)}} />
-            <label class="form-check-label" for={{concat "modular-count" num}}>{{num}}</label>
-          </div>
+      <legend>Villain</legend>
+      <select class="custom-select" onChange={{action (mut this.parameters.villain) value="target.value"}}>
+        <option value="random">Random</option>
+        {{#each this.villains as |villain|}}
+          <option value={{villain.id}} selected={{is-equal villain.id this.parameters.villain}}>{{villain.name}}</option>
         {{/each}}
-      </div>
+      </select>
     </div>
   </fieldset>
   <fieldset class="form-group" id="difficultyMode">
@@ -31,15 +29,17 @@
       </div>
     </div>
   </fieldset>
-  <fieldset class="form-group" id="villain">
+  <fieldset class="form-group" id="modular-count">
     <div class="row">
-      <legend>Villain</legend>
-      <select class="custom-select" onChange={{action (mut this.parameters.villain) value="target.value"}}>
-        <option value="random">Random</option>
-        {{#each this.villains as |villain|}}
-          <option value={{villain.id}} selected={{is-equal villain.id this.parameters.villain}}>{{villain.name}}</option>
+      <legend>No. of Modular Sets</legend>
+      <div class='options'>
+        {{#each this.numModularEncounterSets as |num|}}
+          <div class="form-check form-check-inline">
+            <Input @id={{concat "modular-count" num}} type="radio" name="modular-count" checked={{is-equal this.parameters.numModularEncounterSets num}} class="form-check-input" {{on "click" (action (mut this.parameters.numModularEncounterSets) num)}} />
+            <label class="form-check-label" for={{concat "modular-count" num}}>{{num}}</label>
+          </div>
         {{/each}}
-      </select>
+      </div>
     </div>
   </fieldset>
   <fieldset class="form-group" id="numOfPlayers">
