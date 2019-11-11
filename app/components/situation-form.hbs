@@ -3,9 +3,9 @@
     <div class="row">
       <legend>Villain</legend>
       <select class="custom-select" onChange={{action (mut this.parameters.villain) value="target.value"}} data-test-parameters-villain>
-        <option value="random">Random</option>
+        <option value="random" data-test-parameters-villain=random>Random</option>
         {{#each this.villains as |villain|}}
-          <option value={{villain.id}} selected={{is-equal villain.id this.parameters.villain}}>{{villain.name}}</option>
+          <option value={{villain.id}} selected={{is-equal villain.id this.parameters.villain}} data-test-parameters-villain={{villain.name}}>{{villain.name}}</option>
         {{/each}}
       </select>
     </div>
@@ -15,15 +15,15 @@
       <legend>Standard/Export Mode</legend>
       <div class='options'>
         <div class="form-check form-check-inline">
-          <Input @id="difficultyModeRandom" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "random"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "random")}} />
+          <Input @id="difficultyModeRandom" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "random"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "random")}} data-test-parameters-difficulty-mode=random/>
           <label class="form-check-label" for="difficultyMode">Random</label>
         </div>
         <div class="form-check form-check-inline">
-          <Input @id="difficultyModeStandard" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "standard"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "standard")}} />
+          <Input @id="difficultyModeStandard" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "standard"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "standard")}} data-test-parameters-difficulty-mode=standard/>
           <label class="form-check-label" for="difficultyMode">Standard</label>
         </div>
         <div class="form-check form-check-inline">
-          <Input @id="difficultyModeExpert" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "expert"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "expert")}} />
+          <Input @id="difficultyModeExpert" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "expert"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "expert")}} data-test-parameters-difficulty-mode=expert/>
           <label class="form-check-label" for="difficultyMode">Expert</label>
         </div>
       </div>
@@ -35,7 +35,7 @@
       <div class='options'>
         {{#each this.numModularEncounterSets as |num|}}
           <div class="form-check form-check-inline">
-            <Input @id={{concat "modular-count" num}} type="radio" name="modular-count" checked={{is-equal this.parameters.numModularEncounterSets num}} class="form-check-input" {{on "click" (action (mut this.parameters.numModularEncounterSets) num)}} />
+            <Input @id={{concat "modular-count" num}} type="radio" name="modular-count" checked={{is-equal this.parameters.numModularEncounterSets num}} class="form-check-input" {{on "click" (action (mut this.parameters.numModularEncounterSets) num)}} value={{num}} data-test-parameters-modular-encounter-sets={{num}}/>
             <label class="form-check-label" for={{concat "modular-count" num}}>{{num}}</label>
           </div>
         {{/each}}
@@ -48,7 +48,7 @@
       <div class='options'>
         {{#each this.players as |player|}}
           <div class="form-check form-check-inline">
-            <Input @id={{concat "numOfPlayers" player}} type="radio" name="numOfPlayers" checked={{is-equal this.parameters.numOfPlayers player}} class="form-check-input" {{on "click" (action (mut this.parameters.numOfPlayers) player)}} />
+            <Input @id={{concat "numOfPlayers" player}} type="radio" name="numOfPlayers" checked={{is-equal this.parameters.numOfPlayers player}} class="form-check-input" {{on "click" (action (mut this.parameters.numOfPlayers) player)}} data-test-parameters-num-of-players={{player}}/>
             <label class="form-check-label" for="numOfPlayers">{{player}}</label>
           </div>
         {{/each}}
@@ -63,27 +63,27 @@
 </form>
 
 {{#if this.result}}
-  <div class="card" style="width: 18rem;" data-test-result-villain={{this.result.villain.name}}>
+  <div class="card" style="width: 18rem;" data-test-result-villain>
     <div class="card-header">
-      {{this.result.villain.name}}
-      <p class="card-subtitle mb-2 text-muted">Difficulty Mode: {{this.result.difficultyMode}}</p>
+      <span data-test-result-villain-name>{{this.result.villain.name}}</span>
+      <p class="card-subtitle mb-2 text-muted">Difficulty Mode: <span data-test-result-difficulty-mode>{{this.result.difficultyMode}}</span></p>
     </div>
     <ul class="list-group list-group-flush">
       {{#each this.result.modularEncounterSets as |set|}}
-        <li class="list-group-item">
-          <h6 class="card-title">{{set.name}} <span class="text-muted">({{set.pack}})</span></h6>
+        <li class="list-group-item" data-test-result-modular-encounter-set>
+          <h6 class="card-title"><span data-test-result-modular-encounter-set-name={{set.slug}}>{{set.name}}</span> <span class="text-muted">({{set.pack}})</span></h6>
           <p class="card-subtitle mb-2 text-muted">difficulty {{set.difficulty}}</p>
         </li>
       {{/each}}
     </ul>
   </div>
   {{#if this.result.players}}
-    <div class="card" style="width: 18rem;" data-test-result-player-hero={{player.identity.id}} data-test-result-player-aspect={{player.aspect}}>
+    <div class="card" style="width: 18rem;" data-test-result-player>
       {{#each this.result.players as |player|}}
-        <div class="card-header">
-          {{player.identity.hero}}
+        <div class="card-header" data-test-result-player-header>
+          <span data-test-result-player-hero>{{player.identity.hero}}</span>
           <p class="card-subtitle mb-2">{{player.identity.alterEgo}}</p>
-          <p class="card-subtitle mb-2 text-muted">{{player.aspect}}</p>
+          <p class="card-subtitle mb-2 text-muted" data-test-result-player-aspect>{{player.aspect}}</p>
         </div>
       {{/each}}
     </div>
