@@ -2,11 +2,15 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { fillIn, find, findAll, click, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import Data from 'danger-room/data/data';
 
 module('Integration | Component | situation-form', function(hooks) {
   setupRenderingTest(hooks);
   let generated;
   hooks.beforeEach(function() {
+    this.store = this.owner.lookup('service:store');
+    this.store.push(Data);
+
     this.state = {
       parameters: {
         difficultyMode: "",
@@ -22,13 +26,18 @@ module('Integration | Component | situation-form', function(hooks) {
       },
     };
 
+    this.model = {
+      identities: this.store.findAll('identity'),
+      modularEncounterSets: this.store.findAll('modular-encounter-set'),
+    };
+
     this.action = (state) => {
       generated = state;
     };
   });
 
   test('it does not render results on initial render', async function(assert) {
-    await render(hbs`<SituationForm @state={{this.state}} />`);
+    await render(hbs`<SituationForm @state={{this.state}} @model={{this.model}} />`);
 
     assert.notOk(find('[data-test-result-villain]'));
     assert.notOk(find('[data-test-result-player]'));
@@ -46,13 +55,13 @@ module('Integration | Component | situation-form', function(hooks) {
         difficultyMode: "standard",
         modularEncounterSets: ["bomb_scare", "under_attack"],
         players: [{
-          identity: 1,
+          identity: '1',
           aspect: "Justice",
         }],
         villain: "rhino",
       }
     };
-    await render(hbs`<SituationForm @state={{this.state}} />`);
+    await render(hbs`<SituationForm @state={{this.state}} @model={{this.model}} />`);
 
     assert.ok(find('[data-test-parameters-villain="random"]').selected);
     assert.ok(find('[data-test-parameters-difficulty-mode="standard"]').checked);
@@ -70,7 +79,7 @@ module('Integration | Component | situation-form', function(hooks) {
   });
 
   test('it renders results in generate', async function(assert) {
-    await render(hbs`<SituationForm @state={{this.state}} @submit={{this.action}}/>`);
+    await render(hbs`<SituationForm @state={{this.state}} @submit={{this.action}} @model={{this.model}} />`);
     await click('[data-test-generate]');
 
     assert.ok(generated);
@@ -78,7 +87,7 @@ module('Integration | Component | situation-form', function(hooks) {
   });
 
   test('it uses the villain selected', async function(assert) {
-    await render(hbs`<SituationForm @state={{this.state}} @submit={{this.action}}/>`);
+    await render(hbs`<SituationForm @state={{this.state}} @submit={{this.action}} @model={{this.model}} />`);
     await fillIn('[data-test-parameters-villain]', '1');
     await click('[data-test-generate]');
 
@@ -89,7 +98,7 @@ module('Integration | Component | situation-form', function(hooks) {
   });
 
   test('it generates the number of modular encounter sets', async function(assert) {
-    await render(hbs`<SituationForm @state={{this.state}} @submit={{this.action}}/>`);
+    await render(hbs`<SituationForm @state={{this.state}} @submit={{this.action}} @model={{this.model}} />`);
     await click('[data-test-parameters-modular-encounter-sets="2"]');
     await click('[data-test-generate]');
 
@@ -99,7 +108,7 @@ module('Integration | Component | situation-form', function(hooks) {
   });
 
   test('it uses the difficulty mode picked', async function(assert) {
-    await render(hbs`<SituationForm @state={{this.state}} @submit={{this.action}}/>`);
+    await render(hbs`<SituationForm @state={{this.state}} @submit={{this.action}} @model={{this.model}} />`);
     await click('[data-test-parameters-difficulty-mode="standard"]');
     await click('[data-test-generate]');
 
@@ -109,7 +118,7 @@ module('Integration | Component | situation-form', function(hooks) {
   });
 
   test('it generates player combinations', async function(assert) {
-    await render(hbs`<SituationForm @state={{this.state}} @submit={{this.action}}/>`);
+    await render(hbs`<SituationForm @state={{this.state}} @submit={{this.action}} @model={{this.model}} />`);
     await click('[data-test-parameters-num-of-players="2"]');
     await click('[data-test-generate]');
 

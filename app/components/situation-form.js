@@ -2,8 +2,6 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import shuffle from 'lodash.shuffle';
-import Identities from 'danger-room/data/identities';
-import ModularEncounterSets from 'danger-room/data/modular-encounter-sets';
 import Villains from 'danger-room/data/villains';
 
 const DIFFICULTY_MODES = ['standard', 'expert'];
@@ -14,7 +12,7 @@ export default class SituationForm extends Component {
   @tracked result = null;
   @tracked modularRadioIndex = 0;
   players = [0, 1, 2, 3, 4];
-  numModularEncounterSets = [1, 2, 3];
+  numModularEncounterSets = [...Array(3).keys()].map(i => i + 1);
   villains = Villains;
 
   constructor(owner, args) {
@@ -23,6 +21,9 @@ export default class SituationForm extends Component {
     let modularEncounterSets = [];
     let difficultyMode = null;
     let players = [];
+
+    this.identities = args.model.identities;
+    this.modularEncounterSets = args.model.modularEncounterSets;
 
     this.parameters = args.state.parameters;
     if (!CHOSEN_DIFFICULTY_MODES.includes(this.parameters.difficultyMode)) {
@@ -44,14 +45,14 @@ export default class SituationForm extends Component {
       }
     }
     args.state.result.modularEncounterSets.forEach(inputSet => {
-      let foundSet = ModularEncounterSets.find(dataSet => dataSet.slug === inputSet);
+      let foundSet = this.modularEncounterSets.find(dataSet => dataSet.slug === inputSet);
       if (foundSet) {
         modularEncounterSets.push(foundSet);
       }
     });
     if (args.state.result.players) {
       players = args.state.result.players.map(player => {
-        let id = Identities.find(i => i.id === player.identity);
+        let id = this.identities.find(i => i.id === player.identity);
         if (id) {
           return {
             identity: id,
@@ -74,7 +75,7 @@ export default class SituationForm extends Component {
 
   @action
   generate() {
-    let modulars = shuffle(ModularEncounterSets);
+    let modulars = shuffle(this.modularEncounterSets.toArray());
     let sets = [];
     for (let i = 0; i < this.parameters.numModularEncounterSets; i++) {
       sets.push(modulars.pop());
@@ -89,7 +90,7 @@ export default class SituationForm extends Component {
     }
     let players = [];
     if (this.parameters.numOfPlayers > 0) {
-      let identities = shuffle(Identities);
+      let identities = shuffle(this.identities.toArray());
       for (let i = 0; i < this.parameters.numOfPlayers; i++) {
         players.push({
           identity: identities.pop(),
