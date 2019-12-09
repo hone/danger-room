@@ -2203,6 +2203,11 @@ blank-object@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/blank-object/-/blank-object-1.0.2.tgz#f990793fbe9a8c8dd013fb3219420bec81d5f4b9"
 
+blob-polyfill@^2.0.20171115:
+  version "2.0.20171115"
+  resolved "https://registry.yarnpkg.com/blob-polyfill/-/blob-polyfill-2.0.20171115.tgz#8e5c2659dda443365fafd6dd421517653f1d5ffd"
+  integrity sha512-qHpuIpWlDLdOzSI9n1+423JL8c60Tbyyu/w4+zQIPCazvKBjf0sqQWiUS2QtyHph3S1C8m17T/jKyhv/DnnQFA==
+
 blob@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/blob/-/blob-0.0.5.tgz#d680eeef25f8cd91ad533f5b01eed48e64caf683"
@@ -4011,7 +4016,7 @@ ember-cli-uglify@^3.0.0:
     broccoli-uglify-sourcemap "^3.1.0"
     lodash.defaultsdeep "^4.6.0"
 
-ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.1, ember-cli-version-checker@^2.1.2:
+ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-version-checker@^2.1.1, ember-cli-version-checker@^2.1.2:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ember-cli-version-checker/-/ember-cli-version-checker-2.2.0.tgz#47771b731fe0962705e27c8199a9e3825709f3b3"
   dependencies:
@@ -4139,6 +4144,13 @@ ember-concurrency@^1.0.0:
     ember-compatibility-helpers "^1.2.0"
     ember-maybe-import-regenerator "^0.1.6"
 
+ember-copy@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-copy/-/ember-copy-1.0.0.tgz#426554ba6cf65920f31d24d0a3ca2cb1be16e4aa"
+  integrity sha512-aiZNAvOmdemHdvZNn0b5b/0d9g3JFpcOsrDgfhYEbfd7SzE0b69YiaVK2y3wjqfjuuiA54vOllGN4pjSzECNSw==
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 ember-data@~3.14.0:
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/ember-data/-/ember-data-3.14.0.tgz#e36584722bf84aef21a0541e10f2a3016b75b231"
@@ -4196,6 +4208,21 @@ ember-load-initializers@^2.0.0:
   dependencies:
     ember-cli-babel "^7.10.0"
     ember-cli-typescript "^2.0.0"
+
+ember-local-storage@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/ember-local-storage/-/ember-local-storage-1.7.1.tgz#d24edb9a6808534bdf1e7afb88314e8e5e8623b9"
+  integrity sha512-N5e8zShbqbmzpEux9CVrYdCnQEDd1QDyyHYkxCSmXBdwqNwc2mqiQamkg4lUn9DP4lM4EbkF6LFNCFKarL3N7A==
+  dependencies:
+    blob-polyfill "^2.0.20171115"
+    broccoli-funnel "^2.0.1"
+    broccoli-merge-trees "^2.0.0"
+    broccoli-stew "^1.5.0"
+    chalk "^2.3.0"
+    ember-cli-babel "^7.7.3"
+    ember-cli-string-utils "^1.1.0"
+    ember-cli-version-checker "^2.1.0"
+    ember-copy "^1.0.0"
 
 ember-maybe-import-regenerator@^0.1.6:
   version "0.1.6"
