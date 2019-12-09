@@ -8,7 +8,7 @@ export default [
   }, {
     "id": 2,
     "hero": "Captain Marvel",
-    "alterEgo": "Carol Denvers",
+    "alterEgo": "Carol Danvers",
     "slug": "captain_marvel",
     "set": "Core",
   }, {
