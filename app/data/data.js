@@ -10,6 +10,33 @@ export default {
         data: [{
           id: 1,
           type: 'identity',
+        }, {
+          id: 2,
+          type: 'identity',
+        }, {
+          id: 3,
+          type: 'identity',
+        }, {
+          id: 4,
+          type: 'identity',
+        }, {
+          id: 5,
+          type: 'identity',
+        }, {
+          id: 1,
+          type: 'modular-encounter-set',
+        }, {
+          id: 2,
+          type: 'modular-encounter-set',
+        }, {
+          id: 3,
+          type: 'modular-encounter-set',
+        }, {
+          id: 4,
+          type: 'modular-encounter-set',
+        }, {
+          id: 5,
+          type: 'modular-encounter-set',
         }]
       },
     },
