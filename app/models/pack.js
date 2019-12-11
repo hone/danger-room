@@ -5,4 +5,5 @@ export default class PackModel extends Model {
   @attr name;
   @hasMany('identity') identities;
   @hasMany('modular-encounter-set') modularEncounterSets;
+  @hasMany('scenario') scenarios;
 }

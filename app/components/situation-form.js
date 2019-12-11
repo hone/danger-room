@@ -2,7 +2,6 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import shuffle from 'lodash.shuffle';
-import Villains from 'danger-room/data/villains';
 
 const DIFFICULTY_MODES = ['standard', 'expert'];
 const CHOSEN_DIFFICULTY_MODES = ['random', 'standard', 'expert'];
@@ -13,17 +12,17 @@ export default class SituationForm extends Component {
   @tracked modularRadioIndex = 0;
   players = [0, 1, 2, 3, 4];
   numModularEncounterSets = [...Array(3).keys()].map(i => i + 1);
-  villains = Villains;
 
   constructor(owner, args) {
     super(owner, args);
-    let villain = null;
+    let scenario = null;
     let modularEncounterSets = [];
     let difficultyMode = null;
     let players = [];
 
     this.identities = args.model.identities;
     this.modularEncounterSets = args.model.modularEncounterSets;
+    this.scenarios = args.model.scenarios;
 
     this.parameters = args.state.parameters;
     if (!CHOSEN_DIFFICULTY_MODES.includes(this.parameters.difficultyMode)) {
@@ -36,8 +35,8 @@ export default class SituationForm extends Component {
       this.parameters.numOfPlayers = 0;
     }
 
-    if (args.state.result.villain.length > 0) {
-      villain = Villains.find(element => element.slug === args.state.result.villain);
+    if (args.state.result.scenario.length > 0) {
+      scenario = this.scenarios.find(element => element.slug === args.state.result.scenario);
     }
     if (args.state.result.difficultyMode.length > 0) {
       if (DIFFICULTY_MODES.includes(args.state.result.difficultyMode)) {
@@ -62,9 +61,9 @@ export default class SituationForm extends Component {
       });
     }
 
-    if (villain && difficultyMode && modularEncounterSets.length > 0) {
+    if (scenario && difficultyMode && modularEncounterSets.length > 0) {
       this.result = {
-        villain,
+        scenario,
         difficultyMode,
         modularEncounterSets,
         players,
@@ -84,9 +83,9 @@ export default class SituationForm extends Component {
     if (difficultyMode === "random") {
       difficultyMode = shuffle(DIFFICULTY_MODES).pop();
     }
-    let villain = Villains.find(v => v.id == this.parameters.villain);
-    if (!villain) {
-      villain = shuffle(Villains)[0];
+    let scenario = this.scenarios.find(s => s.id == this.parameters.scenario);
+    if (!scenario) {
+      scenario = shuffle(this.scenarios.toArray())[0];
     }
     let players = [];
     if (this.parameters.numOfPlayers > 0) {
@@ -100,7 +99,7 @@ export default class SituationForm extends Component {
     }
 
     this.result = {
-      villain,
+      scenario,
       difficultyMode,
       modularEncounterSets: sets,
       players,
@@ -110,11 +109,11 @@ export default class SituationForm extends Component {
       parameters: {
         difficultyMode: this.parameters.difficultyMode,
         numModularEncounterSets: this.parameters.numModularEncounterSets,
-        villain: this.parameters.villain,
+        scenario: this.parameters.scenario,
         numOfPlayers: this.parameters.numOfPlayers,
       },
       result: {
-        villain: this.result.villain.slug,
+        scenario: this.result.scenario.slug,
         difficultyMode: this.result.difficultyMode,
         modularEncounterSets: this.result.modularEncounterSets.map(set => set.slug),
         players: this.result.players.map(player => {

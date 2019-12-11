@@ -8,6 +8,7 @@ export default class SituationRoute extends Route {
     return hash({
       identities: this.store.findAll('identity'),
       modularEncounterSets: this.store.findAll('modular-encounter-set'),
+      scenarios: this.store.findAll('scenario'),
     });
   }
 }

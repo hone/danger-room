@@ -10,20 +10,20 @@ export default class SituationController extends Controller {
   }, {
     chosenNumOfPlayers: 'chosen_num_of_players',
   }, {
-    chosenVillain: 'chosen_villain',
+    chosenScenario: 'chosen_scenario',
   }, {
     difficultyMode: 'difficulty_mode'
   }, {
     modularEncounterSets: 'modular_encounter_sets'
-  }, 'players', 'villain'];
-  @tracked chosenVillain = "random";
+  }, 'players', 'scenario'];
+  @tracked chosenScenario = "random";
   @tracked chosenDifficultyMode = "";
   @tracked chosenNumModularEncounterSets = 1;
   @tracked chosenNumOfPlayers = 0;
   @tracked difficultyMode = "";
   @tracked modularEncounterSets = [];
   @tracked players = [];
-  @tracked villain = "";
+  @tracked scenario = "";
 
   get state() {
     return {
@@ -31,26 +31,26 @@ export default class SituationController extends Controller {
         difficultyMode: this.chosenDifficultyMode,
         numModularEncounterSets: this.chosenNumModularEncounterSets,
         numOfPlayers: this.chosenNumOfPlayers,
-        villain: this.chosenVillain,
+        scenario: this.chosenScenario,
       },
       result: {
         difficultyMode: this.difficultyMode,
         modularEncounterSets: this.modularEncounterSets,
         players: this.players,
-        villain: this.villain,
+        scenario: this.scenario,
       },
     };
   }
 
   @action
   submit(state) {
-    this.chosenVillain = state.parameters.villain;
+    this.chosenScenario = state.parameters.scenario;
     this.chosenDifficultyMode = state.parameters.difficultyMode;
     this.chosenNumModularEncounterSets = state.parameters.numModularEncounterSets;
     this.chosenNumOfPlayers = state.parameters.numOfPlayers;
     this.difficultyMode = state.result.difficultyMode;
     this.modularEncounterSets = state.result.modularEncounterSets;
     this.players = state.result.players;
-    this.villain = state.result.villain;
+    this.scenario = state.result.scenario;
   }
 }

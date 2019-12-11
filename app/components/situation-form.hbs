@@ -1,11 +1,11 @@
 <form>
-  <fieldset class="form-group" id="villain">
+  <fieldset class="form-group" id="scenario">
     <div class="row">
-      <legend>Villain</legend>
-      <select class="custom-select" onChange={{action (mut this.parameters.villain) value="target.value"}} data-test-parameters-villain>
-        <option value="random" data-test-parameters-villain=random>Random</option>
-        {{#each this.villains as |villain|}}
-          <option value={{villain.id}} selected={{is-equal villain.id this.parameters.villain}} data-test-parameters-villain={{villain.name}}>{{villain.name}}</option>
+      <legend>Scenario</legend>
+      <select class="custom-select" onChange={{action (mut this.parameters.scenario) value="target.value"}} data-test-parameters-scenario>
+        <option value="random" data-test-parameters-scenario=random>Random</option>
+        {{#each this.scenarios as |scenario|}}
+          <option value={{scenario.id}} selected={{is-equal scenario.id this.parameters.scenario}} data-test-parameters-scenario={{scenario.name}}>{{scenario.name}}</option>
         {{/each}}
       </select>
     </div>
@@ -63,15 +63,15 @@
 </form>
 
 {{#if this.result}}
-  <div class="card" style="width: 18rem;" data-test-result-villain>
+  <div class="card" style="width: 18rem;" data-test-result-scenario>
     <div class="card-header">
-      <span data-test-result-villain-name>{{this.result.villain.name}}</span>
+      <span data-test-result-scenario-name>{{this.result.scenario.name}}</span>
       <p class="card-subtitle mb-2 text-muted">Difficulty Mode: <span data-test-result-difficulty-mode>{{this.result.difficultyMode}}</span></p>
     </div>
     <ul class="list-group list-group-flush">
       {{#each this.result.modularEncounterSets as |set|}}
         <li class="list-group-item" data-test-result-modular-encounter-set>
-          <h6 class="card-title"><span data-test-result-modular-encounter-set-name={{set.slug}}>{{set.name}}</span> <span class="text-muted">({{set.pack}})</span></h6>
+          <h6 class="card-title"><span data-test-result-modular-encounter-set-name={{set.slug}}>{{set.name}}</span> (<span class="text-muted" data-test-result-modular-encounter-set-pack-name={{set.slug}}>{{set.pack.name}}</span>)</h6>
           <p class="card-subtitle mb-2 text-muted">difficulty {{set.difficulty}}</p>
         </li>
       {{/each}}

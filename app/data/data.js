@@ -37,6 +37,15 @@ export default {
         }, {
           id: 5,
           type: 'modular-encounter-set',
+        }, {
+          id: 1,
+          type: 'scenario',
+        }, {
+          id: 2,
+          type: 'scenario',
+        }, {
+          id: 3,
+          type: 'scenario',
         }]
       },
     },
@@ -181,6 +190,48 @@ export default {
     attributes: {
       name: 'The Doomsday Chair',
       difficulty: 5,
+    },
+    relationships: {
+      pack: {
+        data: {
+          id: 1,
+          type: 'pack',
+        },
+      },
+    },
+  }, {
+    id: 1,
+    type: 'scenario',
+    attributes: {
+      name: 'Rhino',
+    },
+    relationships: {
+      pack: {
+        data: {
+          id: 1,
+          type: 'pack',
+        },
+      },
+    },
+  }, {
+    id: 2,
+    type: 'scenario',
+    attributes: {
+      name: 'Klaw',
+    },
+    relationships: {
+      pack: {
+        data: {
+          id: 1,
+          type: 'pack',
+        },
+      },
+    },
+  }, {
+    id: 3,
+    type: 'scenario',
+    attributes: {
+      name: 'Ultron',
     },
     relationships: {
       pack: {

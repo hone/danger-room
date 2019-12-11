@@ -16,19 +16,20 @@ module('Integration | Component | situation-form', function(hooks) {
         difficultyMode: "",
         numModularEncounterSets: 1,
         numOfPlayers: 0,
-        villain: "random",
+        scenario: "random",
       },
       result: {
         difficultyMode: "",
         modularEncounterSets: [],
         players: [],
-        villain: "",
+        scenario: "",
       },
     };
 
     this.model = {
       identities: this.store.findAll('identity'),
       modularEncounterSets: this.store.findAll('modular-encounter-set'),
+      scenarios: this.store.findAll('scenario'),
     };
 
     this.action = (state) => {
@@ -39,7 +40,7 @@ module('Integration | Component | situation-form', function(hooks) {
   test('it does not render results on initial render', async function(assert) {
     await render(hbs`<SituationForm @state={{this.state}} @model={{this.model}} />`);
 
-    assert.notOk(find('[data-test-result-villain]'));
+    assert.notOk(find('[data-test-result-scenario]'));
     assert.notOk(find('[data-test-result-player]'));
   });
 
@@ -49,7 +50,7 @@ module('Integration | Component | situation-form', function(hooks) {
         difficultyMode: "standard",
         numModularEncounterSets: 2,
         numOfPlayers: 1,
-        villain: "random",
+        scenario: "random",
       },
       result: {
         difficultyMode: "standard",
@@ -58,22 +59,24 @@ module('Integration | Component | situation-form', function(hooks) {
           identity: '1',
           aspect: "Justice",
         }],
-        villain: "rhino",
+        scenario: "rhino",
       }
     };
     await render(hbs`<SituationForm @state={{this.state}} @model={{this.model}} />`);
 
-    assert.ok(find('[data-test-parameters-villain="random"]').selected);
+    assert.ok(find('[data-test-parameters-scenario="random"]').selected);
     assert.ok(find('[data-test-parameters-difficulty-mode="standard"]').checked);
     assert.ok(find('[data-test-parameters-modular-encounter-sets="2"]').checked);
     assert.ok(find('[data-test-parameters-num-of-players="1"]').checked);
 
-    assert.ok(find('[data-test-result-villain]'));
+    assert.ok(find('[data-test-result-scenario]'));
     assert.ok(find('[data-test-result-player]'));
-    assert.equal(find('[data-test-result-villain-name]').textContent, 'Rhino');
+    assert.equal(find('[data-test-result-scenario-name]').textContent, 'Rhino');
     assert.equal(find('[data-test-result-difficulty-mode]').textContent, 'standard');
     assert.equal(find('[data-test-result-modular-encounter-set-name="bomb_scare"]').textContent, 'Bomb Scare');
+    assert.equal(find('[data-test-result-modular-encounter-set-pack-name="bomb_scare"]').textContent, 'Core');
     assert.equal(find('[data-test-result-modular-encounter-set-name="under_attack"]').textContent, 'Under Attack');
+    assert.equal(find('[data-test-result-modular-encounter-set-pack-name="under_attack"]').textContent, 'Core');
     assert.equal(find('[data-test-result-player-hero]').textContent, 'Spider-Man');
     assert.equal(find('[data-test-result-player-aspect]').textContent, 'Justice');
   });
@@ -83,17 +86,17 @@ module('Integration | Component | situation-form', function(hooks) {
     await click('[data-test-generate]');
 
     assert.ok(generated);
-    assert.ok(find('[data-test-result-villain]'));
+    assert.ok(find('[data-test-result-scenario]'));
   });
 
-  test('it uses the villain selected', async function(assert) {
+  test('it uses the scenario selected', async function(assert) {
     await render(hbs`<SituationForm @state={{this.state}} @submit={{this.action}} @model={{this.model}} />`);
-    await fillIn('[data-test-parameters-villain]', '1');
+    await fillIn('[data-test-parameters-scenario]', '1');
     await click('[data-test-generate]');
 
     assert.ok(generated);
-    assert.equal(generated.result.villain, 'rhino');
-    let text = find('[data-test-result-villain]').textContent;
+    assert.equal(generated.result.scenario, 'rhino');
+    let text = find('[data-test-result-scenario]').textContent;
     assert.ok(text.includes('Rhino'), `Expected to find 'Rhino', but found: ${text}`);
   });
 
