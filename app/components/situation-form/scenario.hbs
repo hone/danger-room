@@ -1,0 +1,11 @@
+<fieldset class="form-group" id="scenario">
+  <div class="row">
+    <legend>Scenario</legend>
+    <select ...attributes class="custom-select" data-test-parameters-scenario>
+      <option value="random" data-test-parameters-scenario=random selected={{is-equal "random" @chosen}}>Random</option>
+      {{#each @scenarios as |scenario|}}
+        <option value={{scenario.id}} selected={{is-equal scenario.id @chosen}} data-test-parameters-scenario={{scenario.slug}}>{{scenario.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+</fieldset>
