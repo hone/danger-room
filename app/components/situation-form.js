@@ -13,44 +13,40 @@ export default class SituationForm extends Component {
   players = [0, 1, 2, 3, 4];
   numModularEncounterSets = [...Array(3).keys()].map(i => i + 1);
 
-  constructor(owner, args) {
-    super(owner, args);
-    let scenario = null;
-    let modularEncounterSets = [];
-    let difficultyMode = null;
-    let players = [];
-
-    this.identities = args.model.identities;
-    this.modularEncounterSets = args.model.modularEncounterSets;
-    this.scenarios = args.model.scenarios;
-
-    this.parameters = args.state.parameters;
+  setupParameters() {
     if (!CHOSEN_DIFFICULTY_MODES.includes(this.parameters.difficultyMode)) {
       this.parameters.difficultyMode = "random";
     }
     if (!this.numModularEncounterSets.includes(this.parameters.numModularEncounterSets)) {
       this.parameters.numModularEncounterSets = 1;
     }
-    if (args.state.parameters.numOfPlayers > 4 && args.state.parameters.numOfPlayers < 0) {
+    if (this.parameters.numOfPlayers > 4 && this.parameters.numOfPlayers < 0) {
       this.parameters.numOfPlayers = 0;
     }
+  }
 
-    if (args.state.result.scenario.length > 0) {
-      scenario = this.scenarios.find(element => element.slug === args.state.result.scenario);
+  buildResult(result) {
+    let scenario = null;
+    let difficultyMode = null;
+    let modularEncounterSets = [];
+    let players = [];
+
+    if (result.scenario.length > 0) {
+      scenario = this.scenarios.find(element => element.slug === result.scenario);
     }
-    if (args.state.result.difficultyMode.length > 0) {
-      if (DIFFICULTY_MODES.includes(args.state.result.difficultyMode)) {
-        difficultyMode = args.state.result.difficultyMode;
+    if (result.difficultyMode.length > 0) {
+      if (DIFFICULTY_MODES.includes(result.difficultyMode)) {
+        difficultyMode = result.difficultyMode;
       }
     }
-    args.state.result.modularEncounterSets.forEach(inputSet => {
+    result.modularEncounterSets.forEach(inputSet => {
       let foundSet = this.modularEncounterSets.find(dataSet => dataSet.slug === inputSet);
       if (foundSet) {
         modularEncounterSets.push(foundSet);
       }
     });
-    if (args.state.result.players) {
-      players = args.state.result.players.map(player => {
+    if (result.players) {
+      players = result.players.map(player => {
         let id = this.identities.find(i => i.id === player.identity);
         if (id) {
           return {
@@ -62,13 +58,24 @@ export default class SituationForm extends Component {
     }
 
     if (scenario && difficultyMode && modularEncounterSets.length > 0) {
-      this.result = {
+      return {
         scenario,
         difficultyMode,
         modularEncounterSets,
         players,
       };
     }
+  }
+
+  constructor(owner, args) {
+    super(owner, args);
+
+    this.identities = args.model.identities;
+    this.modularEncounterSets = args.model.modularEncounterSets;
+    this.scenarios = args.model.scenarios;
+    this.parameters = args.state.parameters;
+    this.setupParameters();
+    this.result = this.buildResult(args.state.result);
     this.submit = args.submit;
   }
 
