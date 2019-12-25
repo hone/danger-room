@@ -3,9 +3,9 @@
     <div class="row">
       <legend>Scenario</legend>
       <select class="custom-select" onChange={{action (mut this.parameters.scenario) value="target.value"}} data-test-parameters-scenario>
-        <option value="random" data-test-parameters-scenario=random>Random</option>
+        <option value="random" data-test-parameters-scenario=random selected={{is-equal "random" this.parameters.scenario}}>Random</option>
         {{#each this.scenarios as |scenario|}}
-          <option value={{scenario.id}} selected={{is-equal scenario.id this.parameters.scenario}} data-test-parameters-scenario={{scenario.name}}>{{scenario.name}}</option>
+          <option value={{scenario.id}} selected={{is-equal scenario.id this.parameters.scenario}} data-test-parameters-scenario={{scenario.slug}}>{{scenario.name}}</option>
         {{/each}}
       </select>
     </div>
@@ -15,7 +15,7 @@
       <legend>Standard/Export Mode</legend>
       <div class='options'>
         <div class="form-check form-check-inline">
-          <Input @id="difficultyModeRandom" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "random"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "random")}} data-test-parameters-difficulty-mode=random/>
+          <Input @id="difficultyModeRandom" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "random"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "random")}} data-test-parameters-difficulty-mode=random />
           <label class="form-check-label" for="difficultyMode">Random</label>
         </div>
         <div class="form-check form-check-inline">

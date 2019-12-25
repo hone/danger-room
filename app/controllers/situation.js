@@ -17,7 +17,7 @@ export default class SituationController extends Controller {
     modularEncounterSets: 'modular_encounter_sets'
   }, 'players', 'scenario'];
   @tracked chosenScenario = "random";
-  @tracked chosenDifficultyMode = "";
+  @tracked chosenDifficultyMode = "random";
   @tracked chosenNumModularEncounterSets = 1;
   @tracked chosenNumOfPlayers = 0;
   @tracked difficultyMode = "";

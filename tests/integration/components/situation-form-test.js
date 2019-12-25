@@ -37,6 +37,15 @@ module('Integration | Component | situation-form', function(hooks) {
     };
   });
 
+  test('it sets default values', async function(assert) {
+    await render(hbs`<SituationForm @state={{this.state}} @model={{this.model}} />`);
+
+    assert.ok(find('[data-test-parameters-scenario=random]').selected);
+    assert.ok(find('[data-test-parameters-difficulty-mode=random]').checked);
+    assert.ok(find("[data-test-parameters-modular-encounter-sets='1']").checked);
+    assert.ok(find("[data-test-parameters-num-of-players='0']").checked);
+  });
+
   test('it does not render results on initial render', async function(assert) {
     await render(hbs`<SituationForm @state={{this.state}} @model={{this.model}} />`);
 
@@ -49,8 +58,8 @@ module('Integration | Component | situation-form', function(hooks) {
       parameters: {
         difficultyMode: "standard",
         numModularEncounterSets: 2,
-        numOfPlayers: 1,
-        scenario: "random",
+        numOfPlayers: 2,
+        scenario: "1",
       },
       result: {
         difficultyMode: "standard",
@@ -64,10 +73,10 @@ module('Integration | Component | situation-form', function(hooks) {
     };
     await render(hbs`<SituationForm @state={{this.state}} @model={{this.model}} />`);
 
-    assert.ok(find('[data-test-parameters-scenario="random"]').selected);
+    assert.ok(find('[data-test-parameters-scenario="rhino"]').selected);
     assert.ok(find('[data-test-parameters-difficulty-mode="standard"]').checked);
     assert.ok(find('[data-test-parameters-modular-encounter-sets="2"]').checked);
-    assert.ok(find('[data-test-parameters-num-of-players="1"]').checked);
+    assert.ok(find('[data-test-parameters-num-of-players="2"]').checked);
 
     assert.ok(find('[data-test-result-scenario]'));
     assert.ok(find('[data-test-result-player]'));
