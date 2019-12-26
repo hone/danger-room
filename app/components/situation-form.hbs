@@ -5,15 +5,15 @@
       <legend>Standard/Export Mode</legend>
       <div class='options'>
         <div class="form-check form-check-inline">
-          <Input @id="difficultyModeRandom" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "random"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "random")}} data-test-parameters-difficulty-mode=random />
+          <Input @id="difficultyModeRandom" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "random"}} class="form-check-input" {{on "click" (fn (mut this.parameters.difficultyMode) "random")}} data-test-parameters-difficulty-mode=random />
           <label class="form-check-label" for="difficultyMode">Random</label>
         </div>
         <div class="form-check form-check-inline">
-          <Input @id="difficultyModeStandard" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "standard"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "standard")}} data-test-parameters-difficulty-mode=standard/>
+          <Input @id="difficultyModeStandard" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "standard"}} class="form-check-input" {{on "click" (fn (mut this.parameters.difficultyMode) "standard")}} data-test-parameters-difficulty-mode=standard/>
           <label class="form-check-label" for="difficultyMode">Standard</label>
         </div>
         <div class="form-check form-check-inline">
-          <Input @id="difficultyModeExpert" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "expert"}} class="form-check-input" {{on "click" (action (mut this.parameters.difficultyMode) "expert")}} data-test-parameters-difficulty-mode=expert/>
+          <Input @id="difficultyModeExpert" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "expert"}} class="form-check-input" {{on "click" (fn (mut this.parameters.difficultyMode) "expert")}} data-test-parameters-difficulty-mode=expert/>
           <label class="form-check-label" for="difficultyMode">Expert</label>
         </div>
       </div>
@@ -25,7 +25,7 @@
       <div class='options'>
         {{#each this.numModularEncounterSets as |num|}}
           <div class="form-check form-check-inline">
-            <Input @id={{concat "modular-count" num}} type="radio" name="modular-count" checked={{is-equal this.parameters.numModularEncounterSets num}} class="form-check-input" {{on "click" (action (mut this.parameters.numModularEncounterSets) num)}} value={{num}} data-test-parameters-modular-encounter-sets={{num}}/>
+            <Input @id={{concat "modular-count" num}} type="radio" name="modular-count" checked={{is-equal this.parameters.numModularEncounterSets num}} class="form-check-input" {{on "click" (fn (mut this.parameters.numModularEncounterSets) num)}} value={{num}} data-test-parameters-modular-encounter-sets={{num}}/>
             <label class="form-check-label" for={{concat "modular-count" num}}>{{num}}</label>
           </div>
         {{/each}}
@@ -38,7 +38,7 @@
       <div class='options'>
         {{#each this.players as |player|}}
           <div class="form-check form-check-inline">
-            <Input @id={{concat "numOfPlayers" player}} type="radio" name="numOfPlayers" checked={{is-equal this.parameters.numOfPlayers player}} class="form-check-input" {{on "click" (action (mut this.parameters.numOfPlayers) player)}} data-test-parameters-num-of-players={{player}}/>
+            <Input @id={{concat "numOfPlayers" player}} type="radio" name="numOfPlayers" checked={{is-equal this.parameters.numOfPlayers player}} class="form-check-input" {{on "click" (fn (mut this.parameters.numOfPlayers) player)}} data-test-parameters-num-of-players={{player}}/>
             <label class="form-check-label" for="numOfPlayers">{{player}}</label>
           </div>
         {{/each}}
