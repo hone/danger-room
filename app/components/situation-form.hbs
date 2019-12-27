@@ -1,24 +1,6 @@
 <form>
-  <SituationForm::Scenario @scenarios={{this.scenarios}} @chosen={{this.parameters.scenario}} onChange={{action (mut this.parameters.scenario) value="target.value"}} />
-  <fieldset class="form-group" id="difficultyMode">
-    <div class="form-group row">
-      <legend>Standard/Expert Mode</legend>
-      <div class='options'>
-        <div class="form-check form-check-inline">
-          <Input @id="difficultyModeRandom" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "random"}} class="form-check-input" {{on "click" (fn (mut this.parameters.difficultyMode) "random")}} data-test-parameters-difficulty-mode=random />
-          <label class="form-check-label" for="difficultyMode">Random</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <Input @id="difficultyModeStandard" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "standard"}} class="form-check-input" {{on "click" (fn (mut this.parameters.difficultyMode) "standard")}} data-test-parameters-difficulty-mode=standard/>
-          <label class="form-check-label" for="difficultyMode">Standard</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <Input @id="difficultyModeExpert" type="radio" name="difficultyMode" checked={{is-equal this.parameters.difficultyMode "expert"}} class="form-check-input" {{on "click" (fn (mut this.parameters.difficultyMode) "expert")}} data-test-parameters-difficulty-mode=expert/>
-          <label class="form-check-label" for="difficultyMode">Expert</label>
-        </div>
-      </div>
-    </div>
-  </fieldset>
+  <SituationForm::Scenario @options={{this.scenarios}} @chosen={{this.parameters.scenario}} onChange={{action (mut this.parameters.scenario) value="target.value"}} />
+  <SituationForm::DifficultyMode @options={{this.difficultyModeOptions}} @chosen={{this.parameters.difficultyMode}} @action={{mut this.parameters.difficultyMode}} />
   <fieldset class="form-group" id="modular-count">
     <div class="row">
       <legend>No. of Modular Sets</legend>

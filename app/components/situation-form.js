@@ -73,6 +73,8 @@ export default class SituationForm extends Component {
     this.identities = args.model.identities;
     this.modularEncounterSets = args.model.modularEncounterSets;
     this.scenarios = args.model.scenarios;
+    this.difficultyModeOptions = DIFFICULTY_MODES.slice();
+    this.difficultyModeOptions.unshift('random');
     this.parameters = args.state.parameters;
     this.setupParameters();
     this.result = this.buildResult(args.state.result);

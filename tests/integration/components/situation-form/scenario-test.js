@@ -14,7 +14,7 @@ module('Integration | Component | situation-form/scenario', function(hooks) {
   });
 
   test('it renders and by default selects random', async function(assert) {
-    await render(hbs`<SituationForm::Scenario @chosen="random" @scenarios={{this.scenarios}} />`);
+    await render(hbs`<SituationForm::Scenario @chosen="random" @options={{this.scenarios}} />`);
 
     assert.dom('[data-test-parameters-scenario=random]').exists();
     this.scenarios.toArray().forEach(scenario => {
@@ -25,7 +25,7 @@ module('Integration | Component | situation-form/scenario', function(hooks) {
   });
 
   test('it renders and selects the chosen scenario', async function(assert) {
-    await render(hbs`<SituationForm::Scenario @chosen=1 @scenarios={{this.scenarios}} />`);
+    await render(hbs`<SituationForm::Scenario @chosen=1 @options={{this.scenarios}} />`);
 
     assert.dom('[data-test-parameters-scenario=random]').exists();
     this.scenarios.toArray().forEach(scenario => {
