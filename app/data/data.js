@@ -22,7 +22,10 @@ export default {
         }, {
           id: 5,
           type: 'identity',
-        }, {
+        }],
+      },
+      modularEncounterSets: {
+        data: [{
           id: 1,
           type: 'modular-encounter-set',
         }, {
@@ -37,7 +40,10 @@ export default {
         }, {
           id: 5,
           type: 'modular-encounter-set',
-        }, {
+        }],
+      },
+      scenarios: {
+        data: [{
           id: 1,
           type: 'scenario',
         }, {
