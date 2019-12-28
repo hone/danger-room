@@ -43,7 +43,7 @@ module('Integration | Component | situation-form', function(hooks) {
     assert.ok(find('[data-test-parameters-scenario=random]').selected);
     assert.ok(find("[data-test-parameters-radio='difficulty-mode:random']").checked);
     assert.ok(find("[data-test-parameters-radio='modular-encounter-sets:1']").checked);
-    assert.ok(find("[data-test-parameters-num-of-players='0']").checked);
+    assert.ok(find("[data-test-parameters-radio='num-of-players:0']").checked);
   });
 
   test('it does not render results on initial render', async function(assert) {
@@ -76,7 +76,7 @@ module('Integration | Component | situation-form', function(hooks) {
     assert.ok(find('[data-test-parameters-scenario="rhino"]').selected);
     assert.ok(find("[data-test-parameters-radio='difficulty-mode:standard']").checked);
     assert.ok(find('[data-test-parameters-radio="modular-encounter-sets:2"]').checked);
-    assert.ok(find('[data-test-parameters-num-of-players="2"]').checked);
+    assert.ok(find('[data-test-parameters-radio="num-of-players:2"]').checked);
 
     assert.ok(find('[data-test-result-scenario]'));
     assert.ok(find('[data-test-result-player]'));
@@ -131,7 +131,7 @@ module('Integration | Component | situation-form', function(hooks) {
 
   test('it generates player combinations', async function(assert) {
     await render(hbs`<SituationForm @state={{this.state}} @submit={{this.action}} @model={{this.model}} />`);
-    await click('[data-test-parameters-num-of-players="2"]');
+    await click('[data-test-parameters-radio="num-of-players:2"]');
     await click('[data-test-generate]');
 
     assert.ok(generated);

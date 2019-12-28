@@ -2,19 +2,7 @@
   <SituationForm::Scenario @options={{this.scenarios}} @chosen={{this.parameters.scenario}} onChange={{action (mut this.parameters.scenario) value="target.value"}} />
   <SituationForm::Radios @name="difficulty-mode" @legend="Mode" @options={{this.difficultyModeOptions}} @chosen={{this.parameters.difficultyMode}} @action={{mut this.parameters.difficultyMode}} />
   <SituationForm::Radios @name="modular-encounter-sets" @legend="No. of Modular Sets" @options={{this.numModularEncounterSets}} @chosen={{this.parameters.numModularEncounterSets}} @action={{mut this.parameters.numModularEncounterSets}} />
-  <fieldset class="form-group" id="numOfPlayers">
-    <div class="form-group row">
-      <legend>No. of Players</legend>
-      <div class='options'>
-        {{#each this.players as |player|}}
-          <div class="form-check form-check-inline">
-            <Input @id={{concat "numOfPlayers" player}} type="radio" name="numOfPlayers" checked={{is-equal this.parameters.numOfPlayers player}} class="form-check-input" {{on "click" (fn (mut this.parameters.numOfPlayers) player)}} data-test-parameters-num-of-players={{player}}/>
-            <label class="form-check-label" for="numOfPlayers">{{player}}</label>
-          </div>
-        {{/each}}
-      </div>
-    </div>
-  </fieldset>
+  <SituationForm::Radios @name="num-of-players" @legend="No. of Players" @options={{this.players}} @chosen={{this.parameters.numOfPlayers}} @action={{mut this.parameters.numOfPlayers}} />
   <div class="form-group row">
     <div class="btn-container">
       <button type="button" class="btn btn-primary" {{on "click" this.generate}} data-test-generate>Generate!</button>
