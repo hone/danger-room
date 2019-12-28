@@ -13,6 +13,56 @@ export default class SituationForm extends Component {
   players = [0, 1, 2, 3, 4];
   numModularEncounterSets = [...Array(3).keys()].map(i => i + 1);
 
+  constructor(owner, args) {
+    super(owner, args);
+
+    this.identities = args.model.identities;
+    this.modularEncounterSets = args.model.modularEncounterSets;
+    this.scenarios = args.model.scenarios;
+    this.difficultyModeOptions = DIFFICULTY_MODES.slice();
+    this.difficultyModeOptions.unshift('random');
+    this.parameters = args.state.parameters;
+    this.setupParameters();
+    this.result = this.buildResult(args.state.result);
+    this.submit = args.submit;
+  }
+
+  @action
+  generate() {
+    let sets = this.generateModularEncounterSets();
+    let difficultyMode = this.generateDifficultyMode();
+    let scenario = this.generateScenario();
+    let players = this.generatePlayers();
+
+    this.result = {
+      scenario,
+      difficultyMode,
+      modularEncounterSets: sets,
+      players,
+    };
+
+    let resultState = {
+      parameters: {
+        difficultyMode: this.parameters.difficultyMode,
+        numModularEncounterSets: this.parameters.numModularEncounterSets,
+        scenario: this.parameters.scenario,
+        numOfPlayers: this.parameters.numOfPlayers,
+      },
+      result: {
+        scenario: this.result.scenario.slug,
+        difficultyMode: this.result.difficultyMode,
+        modularEncounterSets: this.result.modularEncounterSets.map(set => set.slug),
+        players: this.result.players.map(player => {
+          return {
+            identity: player.identity.id,
+            aspect: player.aspect
+          };
+        }),
+      },
+    };
+    this.submit(resultState);
+  }
+
   setupParameters() {
     if (!CHOSEN_DIFFICULTY_MODES.includes(this.parameters.difficultyMode)) {
       this.parameters.difficultyMode = "random";
@@ -67,35 +117,34 @@ export default class SituationForm extends Component {
     }
   }
 
-  constructor(owner, args) {
-    super(owner, args);
-
-    this.identities = args.model.identities;
-    this.modularEncounterSets = args.model.modularEncounterSets;
-    this.scenarios = args.model.scenarios;
-    this.difficultyModeOptions = DIFFICULTY_MODES.slice();
-    this.difficultyModeOptions.unshift('random');
-    this.parameters = args.state.parameters;
-    this.setupParameters();
-    this.result = this.buildResult(args.state.result);
-    this.submit = args.submit;
-  }
-
-  @action
-  generate() {
+  generateModularEncounterSets() {
     let modulars = shuffle(this.modularEncounterSets.toArray());
     let sets = [];
     for (let i = 0; i < this.parameters.numModularEncounterSets; i++) {
       sets.push(modulars.pop());
     }
-    let difficultyMode = this.parameters.difficultyMode;
-    if (difficultyMode === "random") {
-      difficultyMode = shuffle(DIFFICULTY_MODES).pop();
+
+    return sets;
+  }
+
+  generateDifficultyMode() {
+    if (this.parameters.difficultyMode === "random") {
+      return shuffle(DIFFICULTY_MODES).pop();
+    } else {
+      return this.parameters.difficultyMode;
     }
+  }
+
+  generateScenario() {
     let scenario = this.scenarios.find(s => s.id == this.parameters.scenario);
     if (!scenario) {
       scenario = shuffle(this.scenarios.toArray())[0];
     }
+
+    return scenario;
+  }
+
+  generatePlayers() {
     let players = [];
     if (this.parameters.numOfPlayers > 0) {
       let identities = shuffle(this.identities.toArray());
@@ -107,32 +156,6 @@ export default class SituationForm extends Component {
       }
     }
 
-    this.result = {
-      scenario,
-      difficultyMode,
-      modularEncounterSets: sets,
-      players,
-    };
-
-    let resultState = {
-      parameters: {
-        difficultyMode: this.parameters.difficultyMode,
-        numModularEncounterSets: this.parameters.numModularEncounterSets,
-        scenario: this.parameters.scenario,
-        numOfPlayers: this.parameters.numOfPlayers,
-      },
-      result: {
-        scenario: this.result.scenario.slug,
-        difficultyMode: this.result.difficultyMode,
-        modularEncounterSets: this.result.modularEncounterSets.map(set => set.slug),
-        players: this.result.players.map(player => {
-          return {
-            identity: player.identity.id,
-            aspect: player.aspect
-          };
-        }),
-      },
-    };
-    this.submit(resultState);
+    return players;
   }
 }
