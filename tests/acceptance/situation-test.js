@@ -23,7 +23,7 @@ module('Acceptance | situation', function(hooks) {
     assert.dom('[data-test-result-scenario]').exists();
 
     await fillIn('[data-test-parameters-scenario]', 1);
-    await click('[data-test-parameters-difficulty-mode=standard]');
+    await click("[data-test-parameters-radio='difficulty-mode:standard']");
     await click("[data-test-parameters-modular-encounter-sets='2']");
     await click('[data-test-generate]');
 

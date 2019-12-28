@@ -1,0 +1,15 @@
+<fieldset class="form-group" id={{@name}} data-test-parameters-radio-fieldset={{@name}}>
+  <div class="form-group row">
+    <legend data-test-parameters-radio-legend={{@name}}>{{@legend}}</legend>
+    <div class="options">
+      {{#each @options as |option|}}
+        <div class="form-check form-check-inline">
+          {{#let (concat @name ":" option) as |ident|}}
+            <Input @id={{ident}} type="radio" name={{@name}} checked={{is-equal @chosen option}} {{on "click" (fn @action option)}} class="form-check-input" data-test-parameters-radio={{ident}} />
+            <label class="form-check-label" for={{ident}} data-test-parameters-radio-label={{ident}}>{{option}}</label>
+          {{/let}}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</fieldset>

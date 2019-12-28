@@ -41,7 +41,7 @@ module('Integration | Component | situation-form', function(hooks) {
     await render(hbs`<SituationForm @state={{this.state}} @model={{this.model}} />`);
 
     assert.ok(find('[data-test-parameters-scenario=random]').selected);
-    assert.ok(find('[data-test-parameters-difficulty-mode=random]').checked);
+    assert.ok(find("[data-test-parameters-radio='difficulty-mode:random']").checked);
     assert.ok(find("[data-test-parameters-modular-encounter-sets='1']").checked);
     assert.ok(find("[data-test-parameters-num-of-players='0']").checked);
   });
@@ -74,7 +74,7 @@ module('Integration | Component | situation-form', function(hooks) {
     await render(hbs`<SituationForm @state={{this.state}} @model={{this.model}} />`);
 
     assert.ok(find('[data-test-parameters-scenario="rhino"]').selected);
-    assert.ok(find('[data-test-parameters-difficulty-mode="standard"]').checked);
+    assert.ok(find("[data-test-parameters-radio='difficulty-mode:standard']").checked);
     assert.ok(find('[data-test-parameters-modular-encounter-sets="2"]').checked);
     assert.ok(find('[data-test-parameters-num-of-players="2"]').checked);
 
@@ -121,7 +121,7 @@ module('Integration | Component | situation-form', function(hooks) {
 
   test('it uses the difficulty mode picked', async function(assert) {
     await render(hbs`<SituationForm @state={{this.state}} @submit={{this.action}} @model={{this.model}} />`);
-    await click('[data-test-parameters-difficulty-mode="standard"]');
+    await click('[data-test-parameters-radio="difficulty-mode:standard"]');
     await click('[data-test-generate]');
 
     assert.ok(generated);

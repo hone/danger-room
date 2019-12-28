@@ -1,6 +1,6 @@
 <form>
   <SituationForm::Scenario @options={{this.scenarios}} @chosen={{this.parameters.scenario}} onChange={{action (mut this.parameters.scenario) value="target.value"}} />
-  <SituationForm::DifficultyMode @options={{this.difficultyModeOptions}} @chosen={{this.parameters.difficultyMode}} @action={{mut this.parameters.difficultyMode}} />
+  <SituationForm::Radios @name="difficulty-mode" @legend="Mode" @options={{this.difficultyModeOptions}} @chosen={{this.parameters.difficultyMode}} @action={{mut this.parameters.difficultyMode}} />
   <fieldset class="form-group" id="modular-count">
     <div class="row">
       <legend>No. of Modular Sets</legend>
