@@ -1,19 +1,7 @@
 <form>
   <SituationForm::Scenario @options={{this.scenarios}} @chosen={{this.parameters.scenario}} onChange={{action (mut this.parameters.scenario) value="target.value"}} />
   <SituationForm::Radios @name="difficulty-mode" @legend="Mode" @options={{this.difficultyModeOptions}} @chosen={{this.parameters.difficultyMode}} @action={{mut this.parameters.difficultyMode}} />
-  <fieldset class="form-group" id="modular-count">
-    <div class="row">
-      <legend>No. of Modular Sets</legend>
-      <div class='options'>
-        {{#each this.numModularEncounterSets as |num|}}
-          <div class="form-check form-check-inline">
-            <Input @id={{concat "modular-count" num}} type="radio" name="modular-count" checked={{is-equal this.parameters.numModularEncounterSets num}} class="form-check-input" {{on "click" (fn (mut this.parameters.numModularEncounterSets) num)}} value={{num}} data-test-parameters-modular-encounter-sets={{num}}/>
-            <label class="form-check-label" for={{concat "modular-count" num}}>{{num}}</label>
-          </div>
-        {{/each}}
-      </div>
-    </div>
-  </fieldset>
+  <SituationForm::Radios @name="modular-encounter-sets" @legend="No. of Modular Sets" @options={{this.numModularEncounterSets}} @chosen={{this.parameters.numModularEncounterSets}} @action={{mut this.parameters.numModularEncounterSets}} />
   <fieldset class="form-group" id="numOfPlayers">
     <div class="form-group row">
       <legend>No. of Players</legend>

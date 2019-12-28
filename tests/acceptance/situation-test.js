@@ -24,7 +24,7 @@ module('Acceptance | situation', function(hooks) {
 
     await fillIn('[data-test-parameters-scenario]', 1);
     await click("[data-test-parameters-radio='difficulty-mode:standard']");
-    await click("[data-test-parameters-modular-encounter-sets='2']");
+    await click("[data-test-parameters-radio='modular-encounter-sets:2']");
     await click('[data-test-generate]');
 
     newURI = currentURL();
