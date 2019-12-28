@@ -56,6 +56,23 @@ export default {
       },
     },
   }, {
+    id: 2,
+    type: 'pack',
+    attributes: {
+      name: 'Green Goblin',
+    },
+    relationships: {
+      scenarios: {
+        data: [{
+          id: 4,
+          type: 'scenario',
+        }, {
+          id: 5,
+          type: 'scenario',
+        }]
+      },
+    },
+  }, {
     id: 1,
     type: 'identity',
     attributes: {
@@ -243,6 +260,34 @@ export default {
       pack: {
         data: {
           id: 1,
+          type: 'pack',
+        },
+      },
+    },
+  }, {
+    id: 4,
+    type: 'scenario',
+    attributes: {
+      name: 'Risky Business',
+    },
+    relationships: {
+      pack: {
+        data: {
+          id: 2,
+          type: 'pack',
+        },
+      },
+    },
+  }, {
+    id: 5,
+    type: 'scenario',
+    attributes: {
+      name: 'Mutagen Formula',
+    },
+    relationships: {
+      pack: {
+        data: {
+          id: 2,
           type: 'pack',
         },
       },
