@@ -80,14 +80,14 @@ module('Integration | Component | situation-form', function(hooks) {
 
     assert.ok(find('[data-test-result-scenario]'));
     assert.ok(find('[data-test-result-player]'));
-    assert.equal(find('[data-test-result-scenario-name]').textContent, 'Rhino');
-    assert.equal(find('[data-test-result-difficulty-mode]').textContent, 'standard');
-    assert.equal(find('[data-test-result-modular-encounter-set-name="bomb_scare"]').textContent, 'Bomb Scare');
-    assert.equal(find('[data-test-result-modular-encounter-set-pack-name="bomb_scare"]').textContent, 'Core');
-    assert.equal(find('[data-test-result-modular-encounter-set-name="under_attack"]').textContent, 'Under Attack');
-    assert.equal(find('[data-test-result-modular-encounter-set-pack-name="under_attack"]').textContent, 'Core');
-    assert.equal(find('[data-test-result-player-hero]').textContent, 'Spider-Man');
-    assert.equal(find('[data-test-result-player-aspect]').textContent, 'Justice');
+    assert.dom('[data-test-result-scenario-name]').hasText('Rhino');
+    assert.dom('[data-test-result-difficulty-mode]').hasText('standard');
+    assert.dom('[data-test-result-modular-encounter-set-name="bomb_scare"]').hasText('Bomb Scare');
+    assert.dom('[data-test-result-modular-encounter-set-pack-name="bomb_scare"]').hasText('Core');
+    assert.dom('[data-test-result-modular-encounter-set-name="under_attack"]').hasText('Under Attack');
+    assert.dom('[data-test-result-modular-encounter-set-pack-name="under_attack"]').hasText('Core');
+    assert.dom('[data-test-result-player-hero]').hasText('Spider-Man');
+    assert.dom('[data-test-result-player-aspect]').hasText('Justice');
   });
 
   test('it renders results in generate', async function(assert) {
@@ -126,7 +126,7 @@ module('Integration | Component | situation-form', function(hooks) {
 
     assert.ok(generated);
     assert.equal(generated.result.difficultyMode, "standard");
-    assert.equal(find('[data-test-result-difficulty-mode]').textContent, "standard");
+    assert.dom('[data-test-result-difficulty-mode]').hasText("standard");
   });
 
   test('it generates player combinations', async function(assert) {

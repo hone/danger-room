@@ -38,7 +38,8 @@ module('Acceptance | situation', function(hooks) {
   });
 
   test('displays existing scenario', async function(assert) {
-    let uri = '/situation?chosen_difficulty_mode=random&chosen_num_of_players=1&difficulty_mode=standard&modular_encounter_sets=%5B%22legions_of_hydra%22%5D&players=%5B%7B%22identity%22%3A%225%22%2C%22aspect%22%3A%22Aggression%22%7D%5D&scenario=ultron';
+    let uri =
+      '/situation?chosen_difficulty_mode=random&chosen_num_of_players=1&difficulty_mode=standard&modular_encounter_sets=%5B%22legions_of_hydra%22%5D&players=%5B%7B%22identity%22%3A%225%22%2C%22aspect%22%3A%22Aggression%22%7D%5D&scenario=ultron';
     await visit(uri);
 
     assert.equal(currentURL(), uri);
@@ -46,7 +47,9 @@ module('Acceptance | situation', function(hooks) {
     assert.dom('[data-test-result-scenario]');
     assert.dom('[data-test-result-scenario-name]').hasText('Ultron');
     assert.dom('[data-test-result-difficulty-mode]').hasText('standard');
-    assert.dom('[data-test-result-modular-encounter-set-pack-name=legions_of_hydra]');
+    assert.dom(
+      '[data-test-result-modular-encounter-set-pack-name=legions_of_hydra]'
+    );
     assert.dom('[data-test-result-player]');
     assert.dom('[data-test-result-player-hero]').hasText('Black Panther');
     assert.dom('[data-test-result-player-aspect]').hasText('Aggression');

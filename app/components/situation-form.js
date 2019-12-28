@@ -51,11 +51,13 @@ export default class SituationForm extends Component {
       result: {
         scenario: this.result.scenario.slug,
         difficultyMode: this.result.difficultyMode,
-        modularEncounterSets: this.result.modularEncounterSets.map(set => set.slug),
+        modularEncounterSets: this.result.modularEncounterSets.map(
+          set => set.slug
+        ),
         players: this.result.players.map(player => {
           return {
             identity: player.identity.id,
-            aspect: player.aspect
+            aspect: player.aspect,
           };
         }),
       },
@@ -65,9 +67,13 @@ export default class SituationForm extends Component {
 
   setupParameters() {
     if (!CHOSEN_DIFFICULTY_MODES.includes(this.parameters.difficultyMode)) {
-      this.parameters.difficultyMode = "random";
+      this.parameters.difficultyMode = 'random';
     }
-    if (!this.numModularEncounterSets.includes(this.parameters.numModularEncounterSets)) {
+    if (
+      !this.numModularEncounterSets.includes(
+        this.parameters.numModularEncounterSets
+      )
+    ) {
       this.parameters.numModularEncounterSets = 1;
     }
     if (this.parameters.numOfPlayers > 4 && this.parameters.numOfPlayers < 0) {
@@ -82,7 +88,9 @@ export default class SituationForm extends Component {
     let players = [];
 
     if (result.scenario.length > 0) {
-      scenario = this.scenarios.find(element => element.slug === result.scenario);
+      scenario = this.scenarios.find(
+        element => element.slug === result.scenario
+      );
     }
     if (result.difficultyMode.length > 0) {
       if (DIFFICULTY_MODES.includes(result.difficultyMode)) {
@@ -90,7 +98,9 @@ export default class SituationForm extends Component {
       }
     }
     result.modularEncounterSets.forEach(inputSet => {
-      let foundSet = this.modularEncounterSets.find(dataSet => dataSet.slug === inputSet);
+      let foundSet = this.modularEncounterSets.find(
+        dataSet => dataSet.slug === inputSet
+      );
       if (foundSet) {
         modularEncounterSets.push(foundSet);
       }
@@ -128,7 +138,7 @@ export default class SituationForm extends Component {
   }
 
   generateDifficultyMode() {
-    if (this.parameters.difficultyMode === "random") {
+    if (this.parameters.difficultyMode === 'random') {
       return shuffle(DIFFICULTY_MODES).pop();
     } else {
       return this.parameters.difficultyMode;

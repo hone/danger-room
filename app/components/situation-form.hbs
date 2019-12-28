@@ -1,37 +1,96 @@
 <form>
-  <SituationForm::Scenario @options={{this.scenarios}} @chosen={{this.parameters.scenario}} onChange={{action (mut this.parameters.scenario) value="target.value"}} />
-  <SituationForm::Radios @name="difficulty-mode" @legend="Mode" @options={{this.difficultyModeOptions}} @chosen={{this.parameters.difficultyMode}} @action={{mut this.parameters.difficultyMode}} />
-  <SituationForm::Radios @name="modular-encounter-sets" @legend="No. of Modular Sets" @options={{this.numModularEncounterSets}} @chosen={{this.parameters.numModularEncounterSets}} @action={{mut this.parameters.numModularEncounterSets}} />
-  <SituationForm::Radios @name="num-of-players" @legend="No. of Players" @options={{this.players}} @chosen={{this.parameters.numOfPlayers}} @action={{mut this.parameters.numOfPlayers}} />
-  <div class="form-group row">
-    <div class="btn-container">
-      <button type="button" class="btn btn-primary" {{on "click" this.generate}} data-test-generate>Generate!</button>
+  <SituationForm::Scenario
+    @options={{this.scenarios}}
+    @chosen={{this.parameters.scenario}}
+    onChange={{action (mut this.parameters.scenario) value='target.value'}}
+  />
+  <SituationForm::Radios
+    @name='difficulty-mode'
+    @legend='Mode'
+    @options={{this.difficultyModeOptions}}
+    @chosen={{this.parameters.difficultyMode}}
+    @action={{mut this.parameters.difficultyMode}}
+  />
+  <SituationForm::Radios
+    @name='modular-encounter-sets'
+    @legend='No. of Modular Sets'
+    @options={{this.numModularEncounterSets}}
+    @chosen={{this.parameters.numModularEncounterSets}}
+    @action={{mut this.parameters.numModularEncounterSets}}
+  />
+  <SituationForm::Radios
+    @name='num-of-players'
+    @legend='No. of Players'
+    @options={{this.players}}
+    @chosen={{this.parameters.numOfPlayers}}
+    @action={{mut this.parameters.numOfPlayers}}
+  />
+  <div class='form-group row'>
+    <div class='btn-container'>
+      <button
+        type='button'
+        class='btn btn-primary'
+        data-test-generate
+        {{on 'click' this.generate}}
+      >
+        Generate!
+      </button>
     </div>
   </div>
 </form>
 
 {{#if this.result}}
-  <div class="card" style="width: 18rem;" data-test-result-scenario>
-    <div class="card-header">
-      <span data-test-result-scenario-name>{{this.result.scenario.name}}</span>
-      <p class="card-subtitle mb-2 text-muted">Difficulty Mode: <span data-test-result-difficulty-mode>{{this.result.difficultyMode}}</span></p>
+  <div class='card' style='width: 18rem;' data-test-result-scenario>
+    <div class='card-header'>
+      <span data-test-result-scenario-name>
+        {{this.result.scenario.name}}
+      </span>
+      <p class='card-subtitle mb-2 text-muted'>
+        Difficulty Mode:
+        <span data-test-result-difficulty-mode>
+          {{this.result.difficultyMode}}
+        </span>
+      </p>
     </div>
-    <ul class="list-group list-group-flush">
+    <ul class='list-group list-group-flush'>
       {{#each this.result.modularEncounterSets as |set|}}
-        <li class="list-group-item" data-test-result-modular-encounter-set>
-          <h6 class="card-title"><span data-test-result-modular-encounter-set-name={{set.slug}}>{{set.name}}</span> (<span class="text-muted" data-test-result-modular-encounter-set-pack-name={{set.slug}}>{{set.pack.name}}</span>)</h6>
-          <p class="card-subtitle mb-2 text-muted">difficulty {{set.difficulty}}</p>
+        <li class='list-group-item' data-test-result-modular-encounter-set>
+          <h6 class='card-title'>
+            <span data-test-result-modular-encounter-set-name={{set.slug}}>
+              {{set.name}}
+            </span>
+            (
+            <span
+              class='text-muted'
+              data-test-result-modular-encounter-set-pack-name={{set.slug}}
+            >
+              {{set.pack.name}}
+            </span>
+            )
+          </h6>
+          <p class='card-subtitle mb-2 text-muted'>
+            difficulty {{set.difficulty}}
+          </p>
         </li>
       {{/each}}
     </ul>
   </div>
   {{#if this.result.players}}
-    <div class="card" style="width: 18rem;" data-test-result-player>
+    <div class='card' style='width: 18rem;' data-test-result-player>
       {{#each this.result.players as |player|}}
-        <div class="card-header" data-test-result-player-header>
-          <span data-test-result-player-hero>{{player.identity.hero}}</span>
-          <p class="card-subtitle mb-2">{{player.identity.alterEgo}}</p>
-          <p class="card-subtitle mb-2 text-muted" data-test-result-player-aspect>{{player.aspect}}</p>
+        <div class='card-header' data-test-result-player-header>
+          <span data-test-result-player-hero>
+            {{player.identity.hero}}
+          </span>
+          <p class='card-subtitle mb-2'>
+            {{player.identity.alterEgo}}
+          </p>
+          <p
+            class='card-subtitle mb-2 text-muted'
+            data-test-result-player-aspect
+          >
+            {{player.aspect}}
+          </p>
         </div>
       {{/each}}
     </div>
