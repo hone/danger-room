@@ -80,6 +80,26 @@ export default {
         name: 'Green Goblin',
       },
       relationships: {
+        modularEncounterSets: {
+          data: [
+            {
+              id: 5,
+              type: 'modular-encounter-set',
+            },
+            {
+              id: 6,
+              type: 'modular-encounter-set',
+            },
+            {
+              id: 7,
+              type: 'modular-encounter-set',
+            },
+            {
+              id: 8,
+              type: 'modular-encounter-set',
+            },
+          ],
+        },
         scenarios: {
           data: [
             {
@@ -249,6 +269,66 @@ export default {
         pack: {
           data: {
             id: 1,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
+      id: 5,
+      type: 'modular-encounter-set',
+      attributes: {
+        name: 'Goblin Gimmicks',
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 2,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
+      id: 6,
+      type: 'modular-encounter-set',
+      attributes: {
+        name: 'A Mess of Things',
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 2,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
+      id: 7,
+      type: 'modular-encounter-set',
+      attributes: {
+        name: 'Power Drain',
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 2,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
+      id: 8,
+      type: 'modular-encounter-set',
+      attributes: {
+        name: 'Running Interference',
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 2,
             type: 'pack',
           },
         },
