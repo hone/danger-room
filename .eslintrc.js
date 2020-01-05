@@ -5,12 +5,10 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
-      legacyDecorators: true
-    }
+      legacyDecorators: true,
+    },
   },
-  plugins: [
-    'ember'
-  ],
+  plugins: ['ember'],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
@@ -19,8 +17,7 @@ module.exports = {
   env: {
     browser: true,
   },
-  rules: {
-  },
+  rules: {},
   overrides: [
     // node files
     {
@@ -33,30 +30,30 @@ module.exports = {
         'blueprints/*/index.js',
         'config/**/*.js',
         'lib/*/index.js',
-        'server/**/*.js'
+        'server/**/*.js',
       ],
-      excludedFiles: [
-        'app/**',
-      ],
+      excludedFiles: ['app/**'],
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2015
+        ecmaVersion: 2015,
       },
       env: {
         browser: false,
-        node: true
+        node: true,
       },
       plugins: ['node'],
-      rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
-        // add your custom rules and overrides for node files here
+      rules: Object.assign(
+        {},
+        require('eslint-plugin-node').configs.recommended.rules,
+        {
+          // add your custom rules and overrides for node files here
 
-        // this can be removed once the following is fixed
-        // https://github.com/mysticatea/eslint-plugin-node/issues/77
-        'node/no-unpublished-require': 'off'
-      }),
-      extends: [
-        'plugin:node/recommended'
-      ],
-    }
-  ]
+          // this can be removed once the following is fixed
+          // https://github.com/mysticatea/eslint-plugin-node/issues/77
+          'node/no-unpublished-require': 'off',
+        }
+      ),
+      extends: ['plugin:node/recommended'],
+    },
+  ],
 };
