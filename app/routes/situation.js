@@ -5,10 +5,17 @@ import { inject as service } from '@ember/service';
 export default class SituationRoute extends Route {
   @service store;
   model() {
+    let packs = this.store.peekAll('pack');
+
     return hash({
-      identities: this.store.findAll('identity'),
-      modularEncounterSets: this.store.findAll('modular-encounter-set'),
-      scenarios: this.store.findAll('scenario'),
+      identities: this.store.peekAll('identity'),
+      modularEncounterSets: this.store.peekAll('modular-encounter-set'),
+      scenarios: this.store.peekAll('scenario'),
+      packs: {
+        core: packs.filterBy('type', 'core'),
+        heroes: packs.filterBy('type', 'hero'),
+        scenarios: packs.filterBy('type', 'scenario'),
+      },
     });
   }
 }

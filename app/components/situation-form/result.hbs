@@ -1,0 +1,57 @@
+<div class='card' style='width: 18rem;' data-test-result-scenario>
+  <div class='card-header'>
+    <span data-test-result-scenario-name>
+      {{@result.scenario.name}}
+    </span>
+    <p class='card-subtitle mb-2 text-muted'>
+      Difficulty Mode:
+      <span data-test-result-difficulty-mode>
+        {{@result.difficultyMode}}
+      </span>
+    </p>
+  </div>
+  <ul class='list-group list-group-flush'>
+    {{#each @result.modularEncounterSets as |set|}}
+      <li class='list-group-item' data-test-result-modular-encounter-set>
+        <h6 class='card-title'>
+          <span data-test-result-modular-encounter-set-name={{set.slug}}>
+            {{set.name}}
+          </span>
+          (
+          <span
+            class='text-muted'
+            data-test-result-modular-encounter-set-pack-name={{set.slug}}
+          >
+            {{set.pack.name}}
+          </span>
+          )
+        </h6>
+        {{#if set.difficulty}}
+          <p
+            class='card-subtitle mb-2 text-muted'
+            data-test-result-modular-encounter-set-difficulty={{set.slug}}
+          >
+            difficulty {{set.difficulty}}
+          </p>
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+</div>
+{{#if @result.players}}
+  <div class='card' style='width: 18rem;' data-test-result-player>
+    {{#each @result.players as |player|}}
+      <div class='card-header' data-test-result-player-header>
+        <span data-test-result-player-hero>
+          {{player.identity.hero}}
+        </span>
+        <p class='card-subtitle mb-2' data-test-result-player-alter-ego>
+          {{player.identity.alterEgo}}
+        </p>
+        <p class='card-subtitle mb-2 text-muted' data-test-result-player-aspect>
+          {{player.aspect}}
+        </p>
+      </div>
+    {{/each}}
+  </div>
+{{/if}}

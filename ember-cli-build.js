@@ -8,6 +8,12 @@ module.exports = function(defaults) {
       bootstrapVersion: 4,
       importBootstrapCSS: true,
     },
+    'ember-cli-string-helpers': {
+      only: ['capitalize'],
+    },
+    'ember-composable-helpers': {
+      only: ['contains', 'toggle'],
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated

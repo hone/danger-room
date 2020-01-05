@@ -1,0 +1,17 @@
+<div class='form-group form-check'>
+  <input
+    ...attributes
+    type='checkbox'
+    class='form-check-input'
+    checked={{contains @pack.id @ownedPacks}}
+    id={{@pack.slug}}
+    data-test-checkbox={{concat @pack.type ':' @pack.slug}}
+  />
+  <label
+    class='form-check-label'
+    for={{@pack.slug}}
+    data-test-checkbox-label={{concat @pack.type ':' @pack.slug}}
+  >
+    {{@pack.name}}
+  </label>
+</div>

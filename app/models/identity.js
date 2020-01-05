@@ -4,9 +4,12 @@ const { Model, attr, belongsTo } = DS;
 export default class IdentityModel extends Model {
   @attr alterEgo;
   @attr hero;
-  @belongsTo('pack') pack;
+  @belongsTo('pack', { async: false }) pack;
 
   get slug() {
-    return this.hero.toLowerCase().replace(/ /g, '_');
+    return this.hero
+      .toLowerCase()
+      .replace(/ /g, '_')
+      .replace(/\./g, '');
   }
 }

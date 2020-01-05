@@ -3,11 +3,19 @@ import { setupTest } from 'ember-qunit';
 
 module('Unit | Model | pack', function(hooks) {
   setupTest(hooks);
-
-  // Replace this with your real tests.
-  test('it exists', function(assert) {
+  hooks.beforeEach(function() {
     let store = this.owner.lookup('service:store');
-    let model = store.createRecord('pack', {});
-    assert.ok(model);
+    this.model = store.createRecord('pack', {
+      name: 'Ms. Marvel',
+      type: 'hero',
+    });
+  });
+
+  test('it exists', function(assert) {
+    assert.ok(this.model);
+  });
+
+  test('it has a slug', function(assert) {
+    assert.equal(this.model.slug, 'ms_marvel');
   });
 });

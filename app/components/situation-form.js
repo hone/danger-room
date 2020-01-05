@@ -10,21 +10,48 @@ const ASPECTS = ['Aggression', 'Justice', 'Leadership', 'Protection'];
 export default class SituationForm extends Component {
   @tracked result = null;
   @tracked modularRadioIndex = 0;
+  @tracked activeTab = 'scenario';
+  @tracked ownedPacks = [];
+  @tracked scenarios = [];
+  @tracked modularEncounterSets = [];
+
   players = [0, 1, 2, 3, 4];
   numModularEncounterSets = [...Array(3).keys()].map(i => i + 1);
 
   constructor(owner, args) {
     super(owner, args);
 
-    this.identities = args.model.identities;
-    this.modularEncounterSets = args.model.modularEncounterSets;
-    this.scenarios = args.model.scenarios;
+    this.packs = args.model.packs;
+    this.ownedPacks.push(
+      ...Object.values(this.packs)
+        .flat()
+        .map(pack => pack.id)
+    );
+    this.allIdentities = args.model.identities;
+    this.computeIdentities();
+    this.allScenarios = args.model.scenarios;
+    this.computeScenarios();
+    this.allModularEncounterSets = args.model.modularEncounterSets;
+    this.computeModularEncounterSets();
     this.difficultyModeOptions = DIFFICULTY_MODES.slice();
     this.difficultyModeOptions.unshift('random');
     this.parameters = args.state.parameters;
     this.setupParameters();
     this.result = this.buildResult(args.state.result);
     this.submit = args.submit;
+  }
+
+  @action
+  togglePack(pack) {
+    let index = this.ownedPacks.indexOf(pack);
+    if (index === -1) {
+      this.ownedPacks.push(pack);
+    } else {
+      this.ownedPacks.splice(index, 1);
+    }
+    this.computeIdentities();
+    this.computeScenarios();
+    this.computeModularEncounterSets();
   }
 
   @action
@@ -63,6 +90,26 @@ export default class SituationForm extends Component {
       },
     };
     this.submit(resultState);
+  }
+
+  computeIdentities() {
+    this.identities = this.allIdentities.filter(identity => {
+      return this.ownedPacks.includes(identity.pack.id);
+    });
+  }
+
+  computeScenarios() {
+    this.scenarios = this.allScenarios.filter(scenario => {
+      return this.ownedPacks.includes(scenario.pack.id);
+    });
+  }
+
+  computeModularEncounterSets() {
+    this.modularEncounterSets = this.allModularEncounterSets.filter(
+      modularEncounterSet => {
+        return this.ownedPacks.includes(modularEncounterSet.pack.id);
+      }
+    );
   }
 
   setupParameters() {

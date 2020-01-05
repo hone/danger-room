@@ -1,0 +1,22 @@
+<form>
+  {{#each (array 'core' 'heroes' 'scenarios') as |type|}}
+    <h3 data-test-heading-pack={{type}}>
+      {{capitalize type}}
+    </h3>
+    {{#each (get @packs type) as |pack|}}
+      {{#if (is-equal type 'core')}}
+        <Packs::Checkbox
+          @pack={{pack}}
+          @ownedPacks={{@ownedPacks}}
+          disabled='disabled'
+        />
+      {{else}}
+        <Packs::Checkbox
+          @pack={{pack}}
+          @ownedPacks={{@ownedPacks}}
+          {{on 'click' (fn @action pack.id)}}
+        />
+      {{/if}}
+    {{/each}}
+  {{/each}}
+</form>

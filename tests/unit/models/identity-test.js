@@ -9,7 +9,7 @@ module('Unit | Model | identity', function(hooks) {
       alterEgo: 'Peter Parker',
       hero: 'Spider-Man',
     });
-  })
+  });
 
   test('it exists', function(assert) {
     assert.ok(this.model);
