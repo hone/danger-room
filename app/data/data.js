@@ -5,6 +5,7 @@ export default {
       type: 'pack',
       attributes: {
         name: 'Core',
+        type: 'core',
       },
       relationships: {
         identities: {
@@ -78,6 +79,7 @@ export default {
       type: 'pack',
       attributes: {
         name: 'Green Goblin',
+        type: 'scenario',
       },
       relationships: {
         modularEncounterSets: {
@@ -109,6 +111,42 @@ export default {
             {
               id: 5,
               type: 'scenario',
+            },
+          ],
+        },
+      },
+    },
+    {
+      id: 3,
+      type: 'pack',
+      attributes: {
+        name: 'Captain America',
+        type: 'hero',
+      },
+      relationships: {
+        identities: {
+          data: [
+            {
+              id: 6,
+              type: 'identity',
+            },
+          ],
+        },
+      },
+    },
+    {
+      id: 4,
+      type: 'pack',
+      attributes: {
+        name: 'Ms. Marvel',
+        type: 'hero',
+      },
+      relationships: {
+        identities: {
+          data: [
+            {
+              id: 7,
+              type: 'identity',
             },
           ],
         },
@@ -195,6 +233,34 @@ export default {
       },
     },
     {
+      id: 6,
+      type: 'identity',
+      attributes: {
+        alterEgo: 'Steve Rogers',
+        hero: 'Captain America',
+      },
+      relationships: {
+        pack: {
+          id: 3,
+          type: 'pack',
+        },
+      },
+    },
+    {
+      id: 7,
+      type: 'identity',
+      attributes: {
+        alterEgo: 'Kamala Khan',
+        hero: 'Ms. Marvel',
+      },
+      relationships: {
+        pack: {
+          id: 4,
+          type: 'pack',
+        },
+      },
+    },
+    {
       id: 1,
       type: 'modular-encounter-set',
       attributes: {
@@ -275,7 +341,7 @@ export default {
       },
     },
     {
-      id: 5,
+      id: 6,
       type: 'modular-encounter-set',
       attributes: {
         name: 'Goblin Gimmicks',
@@ -290,7 +356,7 @@ export default {
       },
     },
     {
-      id: 6,
+      id: 7,
       type: 'modular-encounter-set',
       attributes: {
         name: 'A Mess of Things',
@@ -305,7 +371,7 @@ export default {
       },
     },
     {
-      id: 7,
+      id: 8,
       type: 'modular-encounter-set',
       attributes: {
         name: 'Power Drain',
@@ -320,7 +386,7 @@ export default {
       },
     },
     {
-      id: 8,
+      id: 9,
       type: 'modular-encounter-set',
       attributes: {
         name: 'Running Interference',
