@@ -3,7 +3,7 @@
     <span data-test-result-scenario-name>
       {{@result.scenario.name}}
     </span>
-    <p class='card-subtitle mb-2 text-muted'>
+    <p class='card-subtitle mb-2 muted'>
       Difficulty Mode:
       <span data-test-result-difficulty-mode>
         {{@result.difficultyMode}}
@@ -19,7 +19,7 @@
           </span>
           (
           <span
-            class='text-muted'
+            class='muted'
             data-test-result-modular-encounter-set-pack-name={{set.slug}}
           >
             {{set.pack.name}}
@@ -28,7 +28,7 @@
         </h6>
         {{#if set.difficulty}}
           <p
-            class='card-subtitle mb-2 text-muted'
+            class='card-subtitle mb-2 muted'
             data-test-result-modular-encounter-set-difficulty={{set.slug}}
           >
             difficulty {{set.difficulty}}
@@ -48,7 +48,7 @@
         <p class='card-subtitle mb-2' data-test-result-player-alter-ego>
           {{player.identity.alterEgo}}
         </p>
-        <p class='card-subtitle mb-2 text-muted' data-test-result-player-aspect>
+        <p class='card-subtitle mb-2 muted' data-test-result-player-aspect>
           {{player.aspect}}
         </p>
       </div>
