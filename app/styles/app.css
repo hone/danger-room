@@ -12,6 +12,7 @@
 }
 
 body {
+  background-image: url('./background.png');
   font-family: 'IBM Plex Sans', sans-serif;
 }
 header {
