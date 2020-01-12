@@ -33,6 +33,12 @@ module.exports = function(environment) {
     },
   };
 
+  ENV.contentSecurityPolicy = {
+    'font-src': "'self' data: https://*.auth0.com",
+    'script-src': "'self' 'unsafe-eval' https://*.auth0.com",
+    'connect-src': "'self' http://localhost:* https://mcdb.auth0.com",
+  };
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;

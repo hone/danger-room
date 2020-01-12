@@ -7,17 +7,13 @@ export default class NavBarComponent extends Component {
 
   @action
   login() {
-    // Check out Auth0 Lock's documentation for all the options:
-    // https://auth0.com/docs/libraries/lock/customization
-    const lockOptions = {
-      auth: {
-        params: {
-          scope: 'openid email profile',
-        },
-      },
+    const authOptions = {
+      responseType: 'token id_token',
+      scope: 'openid email profile',
+      redirectUri: 'http://localhost:4200',
     };
 
-    this.session.authenticate('authenticator:auth0-lock', lockOptions);
+    this.session.authenticate('authenticator:auth0-universal', authOptions);
   }
 
   @action
