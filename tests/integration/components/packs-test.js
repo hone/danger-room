@@ -50,6 +50,9 @@ module('Integration | Component | packs', function(hooks) {
 
     await click('[data-test-checkbox="hero:captain_america"]');
     assert.equal(this.clickedPackId, 3);
+
+    await click('[data-test-checkbox-label="hero:ms_marvel"]');
+    assert.equal(this.clickedPackId, 4);
   });
 
   test('core input is disabled', async function(assert) {

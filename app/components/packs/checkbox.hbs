@@ -8,6 +8,7 @@
     data-test-checkbox={{concat @pack.type ':' @pack.slug}}
   >
   <label
+    ...attributes
     class='form-check-label'
     for={{@pack.slug}}
     data-test-checkbox-label={{concat @pack.type ':' @pack.slug}}
