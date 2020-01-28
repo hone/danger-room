@@ -1,12 +1,22 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const purgecss = require('@fullhuman/postcss-purgecss');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    'ember-bootstrap': {
-      bootstrapVersion: 4,
-      importBootstrapCSS: true,
+    postcssOptions: {
+      compile: {
+        plugins: [
+          require('tailwindcss'),
+          purgecss({
+            content: ['./**/*.hbs'],
+            whitelist: ['body'],
+            defaultExtractor: content =>
+              content.match(/[A-Za-z0-9-_:/]+/g) || [],
+          }),
+        ],
+      },
     },
     'ember-cli-string-helpers': {
       only: ['capitalize'],

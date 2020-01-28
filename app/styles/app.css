@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:700|Rubik:900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 :root {
 /*  --yellow-2: #e4d671; */
   --yellow-2: #f7e877;
@@ -13,7 +16,6 @@
 
 body {
   background-image: url('./background.png');
-  font-family: 'IBM Plex Sans', sans-serif;
 }
 header {
   width: 300px;
