@@ -67,8 +67,9 @@ export default class SituationForm extends Component {
   // Unrelated to the refactor, but this may also want to be a Set.
   get ownedPacks() {
     return Object.values(this.packs)
-      .flatMap(pack => pack.id)
-      .filter(pack => !this.unusedPacks.includes(pack))
+      .flat()
+      .map(pack => pack.id)
+      .filter(pack => !this.unusedPacks.includes(pack));
   }
 
   get identities() {
@@ -84,17 +85,15 @@ export default class SituationForm extends Component {
   }
 
   get modularEncounterSets() {
-    return this.allModularEncounterSets.filter(
-      modularEncounterSet => {
-        return this.ownedPacks.includes(modularEncounterSet.pack.id);
-      }
-    );
+    return this.allModularEncounterSets.filter(modularEncounterSet => {
+      return this.ownedPacks.includes(modularEncounterSet.pack.id);
+    });
   }
 
   @action
   togglePack(pack) {
     // A Set would make this nicer
-    let index =  this.unusedPacks.indexOf(pack);
+    let index = this.unusedPacks.indexOf(pack);
 
     if (index === -1) {
       this.unusedPacks.push(pack);
