@@ -21,7 +21,6 @@ export default class SituationForm extends Component {
   constructor(owner, args) {
     super(owner, args);
 
-    this.setupParameters();
     this.result = this.buildResult(args.state.result);
   }
 
@@ -50,10 +49,6 @@ export default class SituationForm extends Component {
 
   get packs() {
     return this.args.model.packs;
-  }
-
-  get parameters() {
-    return this.args.state.parameters;
   }
 
   get submit() {
@@ -88,6 +83,24 @@ export default class SituationForm extends Component {
     return this.allModularEncounterSets.filter(modularEncounterSet => {
       return this.ownedPacks.includes(modularEncounterSet.pack.id);
     });
+  }
+
+  get parameters() {
+    let parameters = this.args.state.parameters;
+
+    if (!CHOSEN_DIFFICULTY_MODES.includes(parameters.difficultyMode)) {
+      parameters.difficultyMode = 'random';
+    }
+    if (
+      !this.numModularEncounterSets.includes(parameters.numModularEncounterSets)
+    ) {
+      parameters.numModularEncounterSets = 1;
+    }
+    if (parameters.numOfPlayers > 4 && parameters.numOfPlayers < 0) {
+      parameters.numOfPlayers = 0;
+    }
+
+    return parameters;
   }
 
   @action
@@ -150,22 +163,6 @@ export default class SituationForm extends Component {
       },
     };
     this.submit(resultState);
-  }
-
-  setupParameters() {
-    if (!CHOSEN_DIFFICULTY_MODES.includes(this.parameters.difficultyMode)) {
-      this.parameters.difficultyMode = 'random';
-    }
-    if (
-      !this.numModularEncounterSets.includes(
-        this.parameters.numModularEncounterSets
-      )
-    ) {
-      this.parameters.numModularEncounterSets = 1;
-    }
-    if (this.parameters.numOfPlayers > 4 && this.parameters.numOfPlayers < 0) {
-      this.parameters.numOfPlayers = 0;
-    }
   }
 
   buildResult(result) {
