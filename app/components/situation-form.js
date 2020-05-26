@@ -110,6 +110,7 @@ export default class SituationForm extends Component {
     // the object stored in the property. If this bothers you, an alternative
     // is to use @pzuraq's tracked-built-ins addon, which implements tracked
     // versions of arrays, sets, etc.
+    // eslint-disable-next-line no-self-assign
     this.unusedPacks = this.unusedPacks;
   }
 
