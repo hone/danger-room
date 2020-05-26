@@ -21,24 +21,51 @@ export default class SituationForm extends Component {
   constructor(owner, args) {
     super(owner, args);
 
-    this.packs = args.model.packs;
     this.ownedPacks.push(
       ...Object.values(this.packs)
         .flat()
         .map(pack => pack.id)
     );
-    this.allIdentities = args.model.identities;
     this.computeIdentities();
-    this.allScenarios = args.model.scenarios;
     this.computeScenarios();
-    this.allModularEncounterSets = args.model.modularEncounterSets;
     this.computeModularEncounterSets();
-    this.difficultyModeOptions = DIFFICULTY_MODES.slice();
-    this.difficultyModeOptions.unshift('random');
-    this.parameters = args.state.parameters;
     this.setupParameters();
     this.result = this.buildResult(args.state.result);
-    this.submit = args.submit;
+  }
+
+  /*
+    Most of these getters are strictly necessary, as they simply alias
+    `this.args.foo` to `this.foo` or rename it to `this.otherFoo`. If
+    the shorter name reads better, that's great, but if not, it's fine
+    to delete them and just use `this.args.foo` directly.
+  */
+
+  get allIdentities() {
+    return this.args.model.identities;
+  }
+
+  get allModularEncounterSets() {
+    return this.args.model.modularEncounterSets;
+  }
+
+  get allScenarios() {
+    return this.args.model.scenarios;
+  }
+
+  get difficultyModeOptions() {
+    return ['random', ...DIFFICULTY_MODES];
+  }
+
+  get packs() {
+    return this.args.model.packs;
+  }
+
+  get parameters() {
+    return this.args.state.parameters;
+  }
+
+  get submit() {
+    return this.args.submit;
   }
 
   @action
