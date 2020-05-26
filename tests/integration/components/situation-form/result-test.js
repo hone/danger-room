@@ -74,7 +74,6 @@ module('Integration | Component | situation-form/result', function(hooks) {
         modularEncounterSet => modularEncounterSet.pack.name === 'Green Goblin'
       )
       .toArray()[0];
-    console.log(modularEncounterSet.difficulty);
     this.result.modularEncounterSets = [modularEncounterSet];
 
     await render(hbs`<SituationForm::Result @result={{this.result}} />`);
