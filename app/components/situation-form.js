@@ -11,9 +11,9 @@ export default class SituationForm extends Component {
   @tracked result = null;
   @tracked modularRadioIndex = 0;
   @tracked activeTab = 'scenario';
-  @tracked ownedPacks = [];
-  @tracked scenarios = [];
-  @tracked modularEncounterSets = [];
+
+  // Unrelated to the refactor, but you may want to use a Set for this.
+  @tracked unusedPacks = [];
 
   players = [0, 1, 2, 3, 4];
   numModularEncounterSets = [...Array(3).keys()].map(i => i + 1);
@@ -21,14 +21,6 @@ export default class SituationForm extends Component {
   constructor(owner, args) {
     super(owner, args);
 
-    this.ownedPacks.push(
-      ...Object.values(this.packs)
-        .flat()
-        .map(pack => pack.id)
-    );
-    this.computeIdentities();
-    this.computeScenarios();
-    this.computeModularEncounterSets();
     this.setupParameters();
     this.result = this.buildResult(args.state.result);
   }
@@ -68,17 +60,58 @@ export default class SituationForm extends Component {
     return this.args.submit;
   }
 
+  /*
+    These getters are derived state.
+   */
+
+  // Unrelated to the refactor, but this may also want to be a Set.
+  get ownedPacks() {
+    return Object.values(this.packs)
+      .flatMap(pack => pack.id)
+      .filter(pack => !this.unusedPacks.includes(pack))
+  }
+
+  get identities() {
+    return this.allIdentities.filter(identity => {
+      return this.ownedPacks.includes(identity.pack.id);
+    });
+  }
+
+  get scenarios() {
+    return this.allScenarios.filter(scenario => {
+      return this.ownedPacks.includes(scenario.pack.id);
+    });
+  }
+
+  get modularEncounterSets() {
+    return this.allModularEncounterSets.filter(
+      modularEncounterSet => {
+        return this.ownedPacks.includes(modularEncounterSet.pack.id);
+      }
+    );
+  }
+
   @action
   togglePack(pack) {
-    let index = this.ownedPacks.indexOf(pack);
+    // A Set would make this nicer
+    let index =  this.unusedPacks.indexOf(pack);
+
     if (index === -1) {
-      this.ownedPacks.push(pack);
+      this.unusedPacks.push(pack);
     } else {
-      this.ownedPacks.splice(index, 1);
+      this.unusedPacks.splice(index, 1);
     }
-    this.computeIdentities();
-    this.computeScenarios();
-    this.computeModularEncounterSets();
+
+    // This is necessary to "update" the tracked property, so Ember knows to
+    // recompute the state derived from this, as Ember can't see the interior
+    // mutation inside the array (using a Set will have the same issue).
+    //
+    // @tracked is "shallow" in the sense that it is only tracking updates
+    // (assignments) to the property itself, not whatever deep mutation inside
+    // the object stored in the property. If this bothers you, an alternative
+    // is to use @pzuraq's tracked-built-ins addon, which implements tracked
+    // versions of arrays, sets, etc.
+    this.unusedPacks = this.unusedPacks;
   }
 
   @action
@@ -117,26 +150,6 @@ export default class SituationForm extends Component {
       },
     };
     this.submit(resultState);
-  }
-
-  computeIdentities() {
-    this.identities = this.allIdentities.filter(identity => {
-      return this.ownedPacks.includes(identity.pack.id);
-    });
-  }
-
-  computeScenarios() {
-    this.scenarios = this.allScenarios.filter(scenario => {
-      return this.ownedPacks.includes(scenario.pack.id);
-    });
-  }
-
-  computeModularEncounterSets() {
-    this.modularEncounterSets = this.allModularEncounterSets.filter(
-      modularEncounterSet => {
-        return this.ownedPacks.includes(modularEncounterSet.pack.id);
-      }
-    );
   }
 
   setupParameters() {
