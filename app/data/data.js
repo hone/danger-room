@@ -171,6 +171,24 @@ export default {
       },
     },
     {
+      id: 6,
+      type: 'pack',
+      attributes: {
+        name: 'Black Widow',
+        type: 'hero',
+      },
+      relationships: {
+        identities: {
+          data: [
+            {
+              id: 9,
+              type: 'identity',
+            },
+          ],
+        },
+      },
+    },
+    {
       id: 1,
       type: 'identity',
       attributes: {
@@ -288,6 +306,20 @@ export default {
       relationships: {
         pack: {
           id: 5,
+          type: 'pack',
+        },
+      },
+    },
+    {
+      id: 9,
+      type: 'identity',
+      attributes: {
+        alterEgo: 'Natasha Romanoff',
+        hero: 'Black Widow',
+      },
+      relationships: {
+        pack: {
+          id: 6,
           type: 'pack',
         },
       },
