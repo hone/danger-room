@@ -1,4 +1,4 @@
-<div class='card' style='width: 18rem;' data-test-result-scenario>
+<div class='card card-row' data-test-result-scenario>
   <div class='card-header'>
     <span data-test-result-scenario-name>
       {{@result.scenario.name}}
@@ -39,7 +39,7 @@
   </ul>
 </div>
 {{#if @result.players}}
-  <div class='card' style='width: 18rem;' data-test-result-player>
+  <div class='card card-row' data-test-result-player>
     {{#each @result.players as |player|}}
       <div class='card-header' data-test-result-player-header>
         <span data-test-result-player-hero>
