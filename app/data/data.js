@@ -153,6 +153,24 @@ export default {
       },
     },
     {
+      id: 5,
+      type: 'pack',
+      attributes: {
+        name: 'Thor',
+        type: 'hero',
+      },
+      relationships: {
+        identities: {
+          data: [
+            {
+              id: 8,
+              type: 'identity',
+            },
+          ],
+        },
+      },
+    },
+    {
       id: 1,
       type: 'identity',
       attributes: {
@@ -256,6 +274,20 @@ export default {
       relationships: {
         pack: {
           id: 4,
+          type: 'pack',
+        },
+      },
+    },
+    {
+      id: 8,
+      type: 'identity',
+      attributes: {
+        alterEgo: 'Odinson',
+        hero: 'Thor',
+      },
+      relationships: {
+        pack: {
+          id: 5,
           type: 'pack',
         },
       },
