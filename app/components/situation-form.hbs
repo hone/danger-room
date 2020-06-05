@@ -28,6 +28,7 @@
     <SituationForm::Scenario
       @options={{this.scenarios}}
       @chosen={{this.parameters.scenario}}
+      {{! template-lint-disable no-action }}
       onChange={{action (mut this.parameters.scenario) value='target.value'}}
     />
     <SituationForm::Radios
