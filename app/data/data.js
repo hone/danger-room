@@ -189,6 +189,24 @@ export default {
       },
     },
     {
+      id: 7,
+      type: 'pack',
+      attributes: {
+        name: 'Doctor Strange',
+        type: 'hero',
+      },
+      relationships: {
+        identities: {
+          data: [
+            {
+              id: 10,
+              type: 'identity',
+            },
+          ],
+        },
+      },
+    },
+    {
       id: 1,
       type: 'identity',
       attributes: {
@@ -320,6 +338,20 @@ export default {
       relationships: {
         pack: {
           id: 6,
+          type: 'pack',
+        },
+      },
+    },
+    {
+      id: 10,
+      type: 'identity',
+      attributes: {
+        alterEgo: 'Stephen Strange',
+        hero: 'Doctor Strange',
+      },
+      relationships: {
+        pack: {
+          id: 7,
           type: 'pack',
         },
       },
