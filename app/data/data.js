@@ -207,6 +207,24 @@ export default {
       },
     },
     {
+      id: 8,
+      type: 'pack',
+      attributes: {
+        name: 'Hulk',
+        type: 'hero',
+      },
+      relationships: {
+        identities: {
+          data: [
+            {
+              id: 11,
+              type: 'identity',
+            },
+          ],
+        },
+      },
+    },
+    {
       id: 1,
       type: 'identity',
       attributes: {
@@ -352,6 +370,20 @@ export default {
       relationships: {
         pack: {
           id: 7,
+          type: 'pack',
+        },
+      },
+    },
+    {
+      id: 11,
+      type: 'identity',
+      attributes: {
+        alterEgo: 'Bruce Banner',
+        hero: 'Hulk',
+      },
+      relationships: {
+        pack: {
+          id: 8,
           type: 'pack',
         },
       },
