@@ -225,6 +225,24 @@ export default {
       },
     },
     {
+      id: 9,
+      type: 'pack',
+      attributes: {
+        name: 'Ronan Modular Set',
+        type: 'print-n-play',
+      },
+      relationships: {
+        modularEncounterSets: {
+          data: [
+            {
+              id: 10,
+              type: 'modular-encounter-set',
+            },
+          ],
+        },
+      },
+    },
+    {
       id: 1,
       type: 'identity',
       attributes: {
@@ -523,6 +541,21 @@ export default {
         pack: {
           data: {
             id: 2,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
+      id: 10,
+      type: 'modular-encounter-set',
+      attributes: {
+        name: 'Ronan Modular Set',
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 9,
             type: 'pack',
           },
         },
