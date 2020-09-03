@@ -174,6 +174,24 @@ export default {
       id: 6,
       type: 'pack',
       attributes: {
+        name: 'Wrecking Crew',
+        type: 'scenario',
+      },
+      relationships: {
+        scenarios: {
+          data: [
+            {
+              id: 6,
+              type: 'scenario',
+            },
+          ],
+        },
+      },
+    },
+    {
+      id: 7,
+      type: 'pack',
+      attributes: {
         name: 'Black Widow',
         type: 'hero',
       },
@@ -189,7 +207,7 @@ export default {
       },
     },
     {
-      id: 7,
+      id: 8,
       type: 'pack',
       attributes: {
         name: 'Doctor Strange',
@@ -207,7 +225,7 @@ export default {
       },
     },
     {
-      id: 8,
+      id: 9,
       type: 'pack',
       attributes: {
         name: 'Hulk',
@@ -225,7 +243,7 @@ export default {
       },
     },
     {
-      id: 9,
+      id: 10,
       type: 'pack',
       attributes: {
         name: 'Ronan Modular Set',
@@ -631,6 +649,22 @@ export default {
         pack: {
           data: {
             id: 2,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
+      id: 6,
+      type: 'scenario',
+      attributes: {
+        name: 'Wrecking Crew',
+        features: ['no-modulars'],
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 6,
             type: 'pack',
           },
         },

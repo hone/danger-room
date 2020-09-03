@@ -129,9 +129,9 @@ export default class SituationForm extends Component {
 
   @action
   generate() {
-    let sets = this.generateModularEncounterSets();
     let difficultyMode = this.generateDifficultyMode();
     let scenario = this.generateScenario();
+    let sets = this.generateModularEncounterSets(scenario);
     let players = this.generatePlayers();
 
     this.result = {
@@ -211,10 +211,13 @@ export default class SituationForm extends Component {
     }
   }
 
-  generateModularEncounterSets() {
+  generateModularEncounterSets(scenario) {
     let modulars = shuffle(this.modularEncounterSets.toArray());
+    let numModularEncounterSets = scenario.features.includes('no-modulars')
+      ? 0
+      : this.parameters.numModularEncounterSets;
     let sets = [];
-    for (let i = 0; i < this.parameters.numModularEncounterSets; i++) {
+    for (let i = 0; i < numModularEncounterSets; i++) {
       sets.push(modulars.pop());
     }
 

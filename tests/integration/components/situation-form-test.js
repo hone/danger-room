@@ -169,6 +169,7 @@ module('Integration | Component | situation-form', function(hooks) {
     await render(
       hbs`<SituationForm @state={{this.state}} @submit={{this.action}} @model={{this.model}} />`
     );
+    await click('[data-test-parameters-scenario=rhino]');
     await click('[data-test-parameters-radio="modular-encounter-sets:2"]');
     await click('[data-test-generate]');
 
