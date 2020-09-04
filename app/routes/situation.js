@@ -15,6 +15,7 @@ export default class SituationRoute extends Route {
         core: packs.filterBy('type', 'core'),
         heroes: packs.filterBy('type', 'hero'),
         scenarios: packs.filterBy('type', 'scenario'),
+        campaigns: packs.filterBy('type', 'campaign'),
         printNPlays: packs.filterBy('type', 'print-n-play'),
       },
     });

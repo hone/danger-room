@@ -100,7 +100,7 @@ module('Integration | Component | situation-form', function(hooks) {
         players: [
           {
             identity: '1',
-            aspect: 'Justice',
+            aspects: ['Justice'],
           },
         ],
         scenario: 'rhino',

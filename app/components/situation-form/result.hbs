@@ -48,9 +48,11 @@
         <p class='card-subtitle mb-2' data-test-result-player-alter-ego>
           {{player.identity.alterEgo}}
         </p>
-        <p class='card-subtitle mb-2 muted' data-test-result-player-aspect>
-          {{player.aspect}}
-        </p>
+        {{#each player.aspects as |aspect|}}
+          <p class='card-subtitle mb-2 muted' data-test-result-player-aspect>
+            {{aspect}}
+          </p>
+        {{/each}}
       </div>
     {{/each}}
   </div>

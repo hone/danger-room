@@ -21,7 +21,7 @@ module('Integration | Component | situation-form/result', function(hooks) {
       players: [
         {
           identity: this.identity,
-          aspect: 'Aggression',
+          aspects: ['Aggression'],
         },
       ],
     };
@@ -56,7 +56,7 @@ module('Integration | Component | situation-form/result', function(hooks) {
       .hasText(this.identity.alterEgo);
     assert
       .dom('[data-test-result-player-aspect]')
-      .hasText(this.result.players[0].aspect);
+      .hasText(this.result.players[0].aspects[0]);
   });
 
   test('it does not render player if not given', async function(assert) {

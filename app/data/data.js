@@ -261,6 +261,68 @@ export default {
       },
     },
     {
+      id: 11,
+      type: 'pack',
+      attributes: {
+        name: 'The Rise of Red Skull',
+        type: 'campaign',
+      },
+      relationships: {
+        identities: {
+          data: [
+            {
+              id: 12,
+              type: 'identity',
+            },
+            {
+              id: 13,
+              type: 'identity',
+            },
+          ],
+        },
+        modularEncounterSets: {
+          data: [
+            {
+              id: 11,
+              type: 'modular-encounter-set',
+            },
+            {
+              id: 12,
+              type: 'modular-encounter-set',
+            },
+            {
+              id: 13,
+              type: 'modular-encounter-set',
+            },
+          ],
+        },
+        scenarios: {
+          data: [
+            {
+              id: 7,
+              type: 'scenario',
+            },
+            {
+              id: 8,
+              type: 'scenario',
+            },
+            {
+              id: 9,
+              type: 'scenario',
+            },
+            {
+              id: 10,
+              type: 'scenario',
+            },
+            {
+              id: 11,
+              type: 'scenario',
+            },
+          ],
+        },
+      },
+    },
+    {
       id: 1,
       type: 'identity',
       attributes: {
@@ -425,6 +487,35 @@ export default {
       },
     },
     {
+      id: 12,
+      type: 'identity',
+      attributes: {
+        alterEgo: 'Cliff Barton',
+        hero: 'Hawkeye',
+      },
+      relationships: {
+        pack: {
+          id: 11,
+          type: 'pack',
+        },
+      },
+    },
+    {
+      id: 13,
+      type: 'identity',
+      attributes: {
+        alterEgo: 'Jessica Drew',
+        hero: 'Spider-Woman',
+        features: ['dual-aspect'],
+      },
+      relationships: {
+        pack: {
+          id: 11,
+          type: 'pack',
+        },
+      },
+    },
+    {
       id: 1,
       type: 'modular-encounter-set',
       attributes: {
@@ -580,6 +671,51 @@ export default {
       },
     },
     {
+      id: 11,
+      type: 'modular-encounter-set',
+      attributes: {
+        name: 'Hydra Assault',
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 11,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
+      id: 11,
+      type: 'modular-encounter-set',
+      attributes: {
+        name: 'Hydra Patrol',
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 11,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
+      id: 11,
+      type: 'modular-encounter-set',
+      attributes: {
+        name: 'Weapon Master',
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 11,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
       id: 1,
       type: 'scenario',
       attributes: {
@@ -665,6 +801,81 @@ export default {
         pack: {
           data: {
             id: 6,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
+      id: 7,
+      type: 'scenario',
+      attributes: {
+        name: 'Crossbones',
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 11,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
+      id: 8,
+      type: 'scenario',
+      attributes: {
+        name: 'Absorbing Man',
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 11,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
+      id: 9,
+      type: 'scenario',
+      attributes: {
+        name: 'Taskmaster',
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 11,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
+      id: 10,
+      type: 'scenario',
+      attributes: {
+        name: 'Zola',
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 11,
+            type: 'pack',
+          },
+        },
+      },
+    },
+    {
+      id: 11,
+      type: 'scenario',
+      attributes: {
+        name: 'Red Skull',
+      },
+      relationships: {
+        pack: {
+          data: {
+            id: 11,
             type: 'pack',
           },
         },

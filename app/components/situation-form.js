@@ -157,7 +157,7 @@ export default class SituationForm extends Component {
         players: this.result.players.map(player => {
           return {
             identity: player.identity.id,
-            aspect: player.aspect,
+            aspects: player.aspects,
           };
         }),
       },
@@ -195,7 +195,7 @@ export default class SituationForm extends Component {
         if (id) {
           return {
             identity: id,
-            aspect: player.aspect,
+            aspects: player.aspects,
           };
         }
       });
@@ -246,9 +246,18 @@ export default class SituationForm extends Component {
     if (this.parameters.numOfPlayers > 0) {
       let identities = shuffle(this.identities.toArray());
       for (let i = 0; i < this.parameters.numOfPlayers; i++) {
+        let identity = identities.pop();
+        let aspects = [];
+        let shuffledAspects = shuffle(ASPECTS);
+        aspects.push(shuffledAspects[0]);
+
+        if (identity.features.includes('dual-aspect')) {
+          aspects.push(shuffledAspects[1]);
+        }
+
         players.push({
-          identity: identities.pop(),
-          aspect: shuffle(ASPECTS)[0],
+          identity,
+          aspects,
         });
       }
     }
