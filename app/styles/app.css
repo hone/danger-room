@@ -11,6 +11,10 @@
   --red-2: #bf2e2a;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 body {
   background-image: url('./background.png');
   font-family: 'IBM Plex Sans', sans-serif;
@@ -89,21 +93,18 @@ legend {
   -webkit-box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.75);
-  border: 2px solid var(--black-1);
-  transform: skewY(-6deg);
-  transform-origin: top left;
-  margin: 0 auto;
   border-radius: 1px;
+  border: 2px solid var(--black-1);
 }
 
 .btn-primary:active {
-  background-color: var(--yellow-3);
-  color: var(--black-1);
+  background-color: var(--yellow-3) !important;
+  color: var(--black-1) !important;
 }
 
-.btn-primary > .active {
+.btn-primary:visited {
+  background-color: var(--yellow-3) !important;
   color: var(--black-1);
-  background-color: var(--yellow-3);
 }
 
 .nav-link {
@@ -200,4 +201,20 @@ input[type='checkbox']:active {
 input[type='radio']:hover,
 input[type='checkbox']:hover {
   background-color: var(--yellow-4);
+}
+
+.log-splat {
+  width: 100px;
+  margin: 0 0;
+}
+
+.log-splat span {
+  display: block;
+  margin: 0 7px;
+  width: 100%;
+}
+
+.log-link {
+  width: 100px;
+  color: black;
 }
