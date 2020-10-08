@@ -1,5 +1,9 @@
 <div class='card card-row' data-test-result-scenario>
-  <a href={{this.shraUrl}} target="_shra">Log Game</a>
+    <a href={{this.shraUrl}} target="_shra" class="log-link">
+      <div class="btn-primary log-splat">
+        <span>Log Game</span>
+      </div>
+    </a>
   <div class='card-header'>
     <span data-test-result-scenario-name>
       {{@result.scenario.name}}
