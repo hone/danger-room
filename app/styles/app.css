@@ -2,7 +2,7 @@
 :root {
   --yellow-2: #f7e877;
   --site-color-1: #f0da41;
-  --site-color-1-focus: #664400;
+  --site-color-1-focus: #e2792c;
   --yellow-4: #544f18;
   --black-1: #1a0301;
   --black-2: #241f1f;
@@ -15,6 +15,13 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
+.site-shadow {
+  -webkit-box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.75);
+  border: 2px solid var(--black-1);
+}
+
 .header-text {
   text-align: center;
   font-family: 'Rubik', sans-serif;
@@ -22,10 +29,6 @@ body {
   margin: 25px auto 25px auto;
   background-color: var(--site-color-1);
   color: var(--black-1);
-  -webkit-box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.75);
-  box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.75);
-  border: 2px solid var(--black-1);
   transform: skewY(-9deg);
   border-radius: 1px;
 }
@@ -39,6 +42,7 @@ body {
 }
 
 .nav-button {
+  transform: skewY(3deg);
   background-color: var(--site-color-1);
   margin: 0 1rem;
 }
