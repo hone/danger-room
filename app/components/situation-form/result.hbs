@@ -1,19 +1,19 @@
-<div class='card card-row' data-test-result-scenario>
-  <div class='card-header'>
+<div class='col-md' data-test-result-scenario>
+  <div>
     <span data-test-result-scenario-name>
       {{@result.scenario.name}}
     </span>
-    <p class='card-subtitle mb-2 muted'>
+    <p class='mb-2 muted'>
       Difficulty Mode:
       <span data-test-result-difficulty-mode>
         {{@result.difficultyMode}}
       </span>
     </p>
   </div>
-  <ul class='list-group list-group-flush'>
+  <ul class=''>
     {{#each @result.modularEncounterSets as |set|}}
-      <li class='list-group-item' data-test-result-modular-encounter-set>
-        <h6 class='card-title'>
+      <li class='' data-test-result-modular-encounter-set>
+        <h6>
           <span data-test-result-modular-encounter-set-name={{set.slug}}>
             {{set.name}}
           </span>
@@ -28,7 +28,7 @@
         </h6>
         {{#if set.difficulty}}
           <p
-            class='card-subtitle mb-2 muted'
+            class='mb-2'
             data-test-result-modular-encounter-set-difficulty={{set.slug}}
           >
             difficulty {{set.difficulty}}
@@ -39,17 +39,17 @@
   </ul>
 </div>
 {{#if @result.players}}
-  <div class='card card-row' data-test-result-player>
+  <div class='' data-test-result-player>
     {{#each @result.players as |player|}}
-      <div class='card-header' data-test-result-player-header>
+      <div class='' data-test-result-player-header>
         <span data-test-result-player-hero>
           {{player.identity.hero}}
         </span>
-        <p class='card-subtitle mb-2' data-test-result-player-alter-ego>
+        <p class='mb-2' data-test-result-player-alter-ego>
           {{player.identity.alterEgo}}
         </p>
         {{#each player.aspects as |aspect|}}
-          <p class='card-subtitle mb-2 muted' data-test-result-player-aspect>
+          <p class='mb-2' data-test-result-player-aspect>
             {{aspect}}
           </p>
         {{/each}}
