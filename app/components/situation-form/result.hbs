@@ -1,59 +1,61 @@
-<div class='col-md' data-test-result-scenario>
-  <div>
-    <span data-test-result-scenario-name>
-      {{@result.scenario.name}}
-    </span>
-    <p class='mb-2 muted'>
-      Difficulty Mode:
-      <span data-test-result-difficulty-mode>
-        {{@result.difficultyMode}}
+<div class='col-md-6'>
+  <div data-test-result-scenario>
+    <div>
+      <span data-test-result-scenario-name>
+        {{@result.scenario.name}}
       </span>
-    </p>
-  </div>
-  <ul class=''>
-    {{#each @result.modularEncounterSets as |set|}}
-      <li class='' data-test-result-modular-encounter-set>
-        <h6>
-          <span data-test-result-modular-encounter-set-name={{set.slug}}>
-            {{set.name}}
-          </span>
-          (
-          <span
-            class='muted'
-            data-test-result-modular-encounter-set-pack-name={{set.slug}}
-          >
-            {{set.pack.name}}
-          </span>
-          )
-        </h6>
-        {{#if set.difficulty}}
-          <p
-            class='mb-2'
-            data-test-result-modular-encounter-set-difficulty={{set.slug}}
-          >
-            difficulty {{set.difficulty}}
-          </p>
-        {{/if}}
-      </li>
-    {{/each}}
-  </ul>
-</div>
-{{#if @result.players}}
-  <div class='' data-test-result-player>
-    {{#each @result.players as |player|}}
-      <div class='' data-test-result-player-header>
-        <span data-test-result-player-hero>
-          {{player.identity.hero}}
+      <p class='mb-2 muted'>
+        Difficulty Mode:
+        <span data-test-result-difficulty-mode>
+          {{@result.difficultyMode}}
         </span>
-        <p class='mb-2' data-test-result-player-alter-ego>
-          {{player.identity.alterEgo}}
-        </p>
-        {{#each player.aspects as |aspect|}}
-          <p class='mb-2' data-test-result-player-aspect>
-            {{aspect}}
-          </p>
-        {{/each}}
-      </div>
-    {{/each}}
+      </p>
+    </div>
+    <ul class=''>
+      {{#each @result.modularEncounterSets as |set|}}
+        <li class='' data-test-result-modular-encounter-set>
+          <h6>
+            <span data-test-result-modular-encounter-set-name={{set.slug}}>
+              {{set.name}}
+            </span>
+            (
+            <span
+              class='muted'
+              data-test-result-modular-encounter-set-pack-name={{set.slug}}
+            >
+              {{set.pack.name}}
+            </span>
+            )
+          </h6>
+          {{#if set.difficulty}}
+            <p
+              class='mb-2'
+              data-test-result-modular-encounter-set-difficulty={{set.slug}}
+            >
+              difficulty {{set.difficulty}}
+            </p>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
   </div>
-{{/if}}
+  {{#if @result.players}}
+    <div class='' data-test-result-player>
+      {{#each @result.players as |player|}}
+        <div class='' data-test-result-player-header>
+          <span data-test-result-player-hero>
+            {{player.identity.hero}}
+          </span>
+          <p class='mb-2' data-test-result-player-alter-ego>
+            {{player.identity.alterEgo}}
+          </p>
+          {{#each player.aspects as |aspect|}}
+            <p class='mb-2' data-test-result-player-aspect>
+              {{aspect}}
+            </p>
+          {{/each}}
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

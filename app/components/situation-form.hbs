@@ -1,80 +1,82 @@
-<div class='text-center col' id='main'>
-  <div class=''>
-    <ul class='nav'>
-      <li class='btn-primary'>
-        <a
-          class="nav-link {{if (is-equal this.activeTab 'scenario') 'active'}}"
-          href='#'
-          data-test-nav-scenario
-          {{on 'click' (fn (mut this.activeTab) 'scenario')}}
-        >
-          Scenario
-        </a>
-      </li>
-      <li class='btn-primary'>
-        <a
-          class="nav-link {{if (is-equal this.activeTab 'packs') 'active'}}"
-          href='#'
-          data-test-nav-packs
-          {{on 'click' (fn (mut this.activeTab) 'packs')}}
-        >
-          Packs
-        </a>
-      </li>
-    </ul>
-  </div>
-{{#if (is-equal this.activeTab 'scenario')}}
-  <form>
-    <SituationForm::Scenario
-      @options={{this.scenarios}}
-      @chosen={{this.parameters.scenario}}
-      {{! template-lint-disable no-action }}
-      onChange={{action (mut this.parameters.scenario) value='target.value'}}
-    />
-    <SituationForm::Radios
-      @name='difficulty-mode'
-      @legend='Mode'
-      @options={{this.difficultyModeOptions}}
-      @chosen={{this.parameters.difficultyMode}}
-      @action={{mut this.parameters.difficultyMode}}
-    />
-    <SituationForm::Radios
-      @name='modular-encounter-sets'
-      @legend='No. of Modular Sets'
-      @options={{this.numModularEncounterSets}}
-      @chosen={{this.parameters.numModularEncounterSets}}
-      @action={{mut this.parameters.numModularEncounterSets}}
-    />
-    <SituationForm::Radios
-      @name='num-of-players'
-      @legend='No. of Players'
-      @options={{this.players}}
-      @chosen={{this.parameters.numOfPlayers}}
-      @action={{mut this.parameters.numOfPlayers}}
-    />
-    <div class='form-group row'>
-      <div class='btn-container'>
-        <button
-          type='button'
-          class='btn btn-primary'
-          data-test-generate
-          {{on 'click' this.generate}}
-        >
-          Generate!
-        </button>
-      </div>
+<div class='row lg-12'>
+  <div class='col-md-6' id='main'>
+    <div class=''>
+      <ul class='nav'>
+        <li class='btn-primary'>
+          <a
+            class="nav-link {{if (is-equal this.activeTab 'scenario') 'active'}}"
+            href='#'
+            data-test-nav-scenario
+            {{on 'click' (fn (mut this.activeTab) 'scenario')}}
+          >
+            Scenario
+          </a>
+        </li>
+        <li class='btn-primary'>
+          <a
+            class="nav-link {{if (is-equal this.activeTab 'packs') 'active'}}"
+            href='#'
+            data-test-nav-packs
+            {{on 'click' (fn (mut this.activeTab) 'packs')}}
+          >
+            Packs
+          </a>
+        </li>
+      </ul>
     </div>
-  </form>
-{{else}}
-  <Packs
-    @packs={{this.packs}}
-    @ownedPacks={{this.ownedPacks}}
-    @action={{this.togglePack}}
-  />
-{{/if}}
+  {{#if (is-equal this.activeTab 'scenario')}}
+    <form>
+      <SituationForm::Scenario
+        @options={{this.scenarios}}
+        @chosen={{this.parameters.scenario}}
+        {{! template-lint-disable no-action }}
+        onChange={{action (mut this.parameters.scenario) value='target.value'}}
+      />
+      <SituationForm::Radios
+        @name='difficulty-mode'
+        @legend='Mode'
+        @options={{this.difficultyModeOptions}}
+        @chosen={{this.parameters.difficultyMode}}
+        @action={{mut this.parameters.difficultyMode}}
+      />
+      <SituationForm::Radios
+        @name='modular-encounter-sets'
+        @legend='No. of Modular Sets'
+        @options={{this.numModularEncounterSets}}
+        @chosen={{this.parameters.numModularEncounterSets}}
+        @action={{mut this.parameters.numModularEncounterSets}}
+      />
+      <SituationForm::Radios
+        @name='num-of-players'
+        @legend='No. of Players'
+        @options={{this.players}}
+        @chosen={{this.parameters.numOfPlayers}}
+        @action={{mut this.parameters.numOfPlayers}}
+      />
+      <div class='form-group row'>
+        <div class='btn-container'>
+          <button
+            type='button'
+            class='btn btn-primary'
+            data-test-generate
+            {{on 'click' this.generate}}
+          >
+            Generate!
+          </button>
+        </div>
+      </div>
+    </form>
+  {{else}}
+    <Packs
+      @packs={{this.packs}}
+      @ownedPacks={{this.ownedPacks}}
+      @action={{this.togglePack}}
+    />
+  {{/if}}
 
+  </div>
+
+  {{#if this.result}}
+    <SituationForm::Result @result={{this.result}} />
+  {{/if}}
 </div>
-
-{{#if this.result}}
-  <SituationForm::Result @result={{this.result}} />
-{{/if}}
