@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:700|Rubik:900&display=swap');
 :root {
-  /*  --yellow-2: #e4d671; */
   --yellow-2: #f7e877;
-  --yellow-3: #f0da41;
+  --site-color-1: #f0da41;
   --yellow-4: #544f18;
   --black-1: #1a0301;
   --black-2: #241f1f;
-  /* --red-1: #e8504d;*/
   --red-1: #ff5a57;
   --red-2: #bf2e2a;
 }
@@ -15,3 +13,19 @@ body {
   background-image: url('./background.png');
   font-family: 'IBM Plex Sans', sans-serif;
 }
+
+.header-text {
+  text-align: center;
+  font-family: 'Rubik', sans-serif;
+  width: 250px;
+  margin: 25px auto 25px auto;
+  background-color: var(--site-color-1);
+  color: var(--black-1);
+  -webkit-box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.75);
+  border: 2px solid var(--black-1);
+  transform: skewY(-9deg);
+  border-radius: 1px;
+}
+
