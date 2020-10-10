@@ -3,6 +3,7 @@
   --yellow-2: #f7e877;
   --site-color-1: #f0da41;
   --site-color-1-focus: #e2792c;
+  --comic-paper: #fffefa;
   --yellow-4: #544f18;
   --black-1: #1a0301;
   --black-2: #241f1f;
@@ -57,4 +58,10 @@ body {
 
 .nav-link.active {
   color: var(--site-color-1);
+}
+
+.comic-page {
+  margin: 1rem 0 0 0;
+  padding: 4rem;
+  background-color: var(--comic-paper);
 }
