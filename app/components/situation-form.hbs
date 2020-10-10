@@ -1,29 +1,29 @@
 <div class='row lg-12'>
-  <div class='col-md-6' id='main'>
-    <div class=''>
-      <ul class='nav'>
-        <li class='btn-primary'>
-          <a
-            class="nav-link {{if (is-equal this.activeTab 'scenario') 'active'}}"
-            href='#'
-            data-test-nav-scenario
-            {{on 'click' (fn (mut this.activeTab) 'scenario')}}
-          >
-            Scenario
-          </a>
-        </li>
-        <li class='btn-primary'>
-          <a
-            class="nav-link {{if (is-equal this.activeTab 'packs') 'active'}}"
-            href='#'
-            data-test-nav-packs
-            {{on 'click' (fn (mut this.activeTab) 'packs')}}
-          >
-            Packs
-          </a>
-        </li>
-      </ul>
-    </div>
+  <ul class='nav'>
+    <li class='nav-button {{if (is-equal this.activeTab 'scenario') 'active'}}'>
+      <a
+        class="nav-link {{if (is-equal this.activeTab 'scenario') 'active'}}"
+        href='#'
+        data-test-nav-scenario
+        {{on 'click' (fn (mut this.activeTab) 'scenario')}}
+      >
+        Scenario
+      </a>
+    </li>
+    <li class='nav-button {{if (is-equal this.activeTab 'packs') 'active'}}'>
+      <a
+        class="nav-link {{if (is-equal this.activeTab 'packs') 'active'}}"
+        href='#'
+        data-test-nav-packs
+        {{on 'click' (fn (mut this.activeTab) 'packs')}}
+      >
+        Packs
+      </a>
+    </li>
+  </ul>
+</div>
+<div class='row lg-12'>
+  <div class='col-md-6 px-3' id='main'>
   {{#if (is-equal this.activeTab 'scenario')}}
     <form>
       <SituationForm::Scenario

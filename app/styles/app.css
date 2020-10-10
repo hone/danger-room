@@ -2,6 +2,7 @@
 :root {
   --yellow-2: #f7e877;
   --site-color-1: #f0da41;
+  --site-color-1-focus: #664400;
   --yellow-4: #544f18;
   --black-1: #1a0301;
   --black-2: #241f1f;
@@ -29,3 +30,27 @@ body {
   border-radius: 1px;
 }
 
+.nav {
+  margin: 1rem auto;
+}
+
+.nav.li {
+  margin: 0 1rem;
+}
+
+.nav-button {
+  background-color: var(--site-color-1);
+  margin: 0 1rem;
+}
+
+.nav-button.active {
+  background-color: var(--site-color-1-focus);
+}
+
+.nav-link {
+  color: var(--black-1);
+}
+
+.nav-link.active {
+  color: var(--site-color-1);
+}
