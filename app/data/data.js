@@ -78,7 +78,7 @@ export default {
       id: 2,
       type: 'pack',
       attributes: {
-        name: 'Green Goblin',
+        name: 'The Green Goblin',
         type: 'scenario',
       },
       relationships: {

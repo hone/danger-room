@@ -69,19 +69,21 @@ export default class SituationForm extends Component {
 
   get identities() {
     return this.allIdentities.filter(identity => {
-      return this.ownedPacks.includes(identity.pack.id);
+      return identity.pack.then(pack => this.ownedPacks.includes(pack.id));
     });
   }
 
   get scenarios() {
     return this.allScenarios.filter(scenario => {
-      return this.ownedPacks.includes(scenario.pack.id);
+      return scenario.pack.then(pack => this.ownedPacks.includes(pack.id));
     });
   }
 
   get modularEncounterSets() {
     return this.allModularEncounterSets.filter(modularEncounterSet => {
-      return this.ownedPacks.includes(modularEncounterSet.pack.id);
+      return modularEncounterSet.pack.then(pack =>
+        this.ownedPacks.includes(pack.id)
+      );
     });
   }
 
